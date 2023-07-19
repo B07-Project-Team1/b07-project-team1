@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pure_white"
+    tools:context=".CustomerLogin">
+
+    <Button
+        android:id="@+id/login_button_customer_login_activity"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/entry_button_background"
+        android:fontFamily="@font/mundial_demibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/login_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/pure_white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_no_account_question_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customer_login_activity_password_input_field" />
+
+    <ImageView
+        android:id="@+id/logo_customer_login_activity"
+        android:layout_width="200dp"
+        android:layout_height="209dp"
+        android:contentDescription="@string/logo_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/customer_login_activity_email_input_field"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/login_info_entry_box_background"
+        android:ems="10"
+        android:fontFamily="@font/mundial_light"
+        android:gravity="start|center_vertical"
+        android:hint="@string/email_entry_box_text"
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_password_input_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_customer_login_activity" />
+
+    <EditText
+        android:id="@+id/customer_login_activity_password_input_field"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/login_info_entry_box_background"
+        android:ems="10"
+        android:fontFamily="@font/mundial_light"
+        android:gravity="start|center_vertical"
+        android:hint="@string/password_entry_box_text"
+        android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_no_account_question_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_customer_login_activity" />
+
+    <TextView
+        android:id="@+id/customer_login_activity_no_account_question_text"
+        android:layout_width="170dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:fontFamily="@font/mundial_regular"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="@string/no_account_question_text"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_customer_login_activity"
+        app:layout_constraintVertical_bias="0.76" />
+
+    <Button
+        android:id="@+id/customer_login_activity_create_account_button"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="@font/mundial_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/create_account_button_text_underlined"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customer_login_activity_no_account_question_text"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
