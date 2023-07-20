@@ -2,9 +2,12 @@ package com.example.b07_project_team1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,7 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CustomerCreateAccount extends AppCompatActivity {
+    Button createAccountButton;
     TextView errorTextView;
+    EditText emailField;
+    EditText passwordField;
+    EditText repeatPasswordField;
+
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
 
@@ -29,6 +37,19 @@ public class CustomerCreateAccount extends AppCompatActivity {
         errorTextView = (TextView) findViewById(R.id.customer_create_account_activity_invalid_credentials_error);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance("https://b07-projectdb-team1-default-rtdb.firebaseio.com/");
+
+        createAccountButton = (Button) findViewById(R.id.create_account_button_customer_create_account_activity);
+        createAccountButton.setOnTouchListener(onTouchCreateAccount);
+
+        emailField = (EditText) findViewById(R.id.customer_create_account_activity_email_input_field);
+        emailField.setOnFocusChangeListener(onFocusChangeEditText);
+
+        passwordField = (EditText) findViewById(R.id.customer_create_account_activity_password_input_field);
+        passwordField.setOnFocusChangeListener(onFocusChangeEditText);
+
+        repeatPasswordField = (EditText) findViewById(R.id.customer_create_account_activity_repeat_password_input_field);
+        repeatPasswordField.setOnFocusChangeListener(onFocusChangeEditText);
+
     }
 
     @Override
@@ -66,59 +87,42 @@ public class CustomerCreateAccount extends AppCompatActivity {
                             DatabaseReference ref = db.getReference();
                             ref.child("customers").child(user.getUid()).setValue(newCustomer);
                         } else {
+                            String message = task.getException().getMessage();
                             String longErr = "The email address is already in use by another account.";
-                            String err = task.getException().getMessage() == longErr ? "Email address already in use." : task.getException().getMessage();
+                            String longErr2 = "The given password is invalid. [ Password should be at least 6 characters ]";
+                            String err = message.equals(longErr) ? "Email address already in use." : message.equals(longErr2) ? "Password is too short." :  message;
                             errorTextView.setText(err);
                         }
                     }
                 });
         }
-
-
     }
-}
 
-/*
-        ~DATABASE STRUCTURE~
-=====================================
-LEGEND:
-- “” means you actually write that
-- no “” means it’s a unique input
-=====================================
-
-
-“customers”: {
-         email: {
-                  “password”: password
-                  “cart”: [product id: quantity, ...]
-                  “pending_orders”: [order id, ...]
+    private View.OnTouchListener onTouchCreateAccount = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
+            }
+            else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
+            }
+            return false;
         }
-}
+    };
 
-“vendors”: {
-    email: {
-        “password”: password
-            “logo_url”: logo_url
-            “brand_name”: brand_name
-            “products”: [product_id, ...]
-            “orders”: [order id, ...]
+    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
+            }
+            else {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
+            }
         }
+    };
 }
-
-“products” {
-    product_id: {
-        “brand_name”: brand_name
-        “price”: price
-        “image_url”: image_url
-        “vendor_email”: vendor_email
-    }
-}
-
-“orders” {
-    order_id: {
-        “customer_email”: customer_email
-        “vendor_email”: vendor_email
-        “items”: [product_id: quantity, ...]
-    }
-}
- */

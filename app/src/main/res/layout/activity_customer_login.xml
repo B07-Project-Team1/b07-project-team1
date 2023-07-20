@@ -27,7 +27,7 @@
 
     <ImageView
         android:id="@+id/logo_customer_login_activity"
-        android:layout_width="200dp"
+        android:layout_width="198dp"
         android:layout_height="209dp"
         android:contentDescription="@string/logo_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +49,11 @@
         android:hint="@string/email_entry_box_text"
         android:inputType="textEmailAddress"
         android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/dark_gray"
         android:textColorHint="@color/dark_gray"
+        android:textColorLink="@color/dark_blue"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_password_input_field"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +72,7 @@
         android:hint="@string/password_entry_box_text"
         android:inputType="textPassword"
         android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:textColorHint="@color/dark_gray"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_no_account_question_text"
@@ -111,8 +116,8 @@
         app:layout_constraintVertical_bias="0.76" />
 
     <Button
-        android:id="@+id/customer_login_activity_create_account_button"
-        android:layout_width="150dp"
+        android:id="@+id/create_account_button_customer_login_activity"
+        android:layout_width="200dp"
         android:layout_height="36dp"
         android:background="#00FFFFFF"
         android:fontFamily="@font/mundial_regular"
@@ -124,8 +129,8 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/customer_login_activity_no_account_question_text"
+        app:layout_constraintStart_toStartOf="@+id/customer_login_activity_no_account_question_text"
         app:layout_constraintTop_toBottomOf="@+id/customer_login_activity_no_account_question_text"
         app:layout_constraintVertical_bias="0.100000024" />
 

@@ -13,5 +13,5 @@
     <string name="repeat_password_entry_box_text">Repeat Password:</string>
     <string name="create_account_button_text">Create Account</string>
     <string name="create_account_empty_fields_text">You have empty fields.</string>
-    <string name="create_account_password_repeat_no_match_text">Passwords do not Match.</string>
+    <string name="create_account_password_repeat_no_match_text">Passwords do not match.</string>
 </resources>

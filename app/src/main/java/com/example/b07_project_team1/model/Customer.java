@@ -16,8 +16,6 @@ public class Customer implements Serializable {
     public Customer(String email) {
         this.email = email;
         this.cart = new ArrayList<String>();
-        cart.add("daniels mom");
         this.pending_orders = new ArrayList<String>();
-        pending_orders.add("daniels dad");
     }
 }
