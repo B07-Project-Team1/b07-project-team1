@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pure_white"
+    tools:context=".UserTypeSelection">
+
+    <ImageView
+        android:id="@+id/logo_user_type_selection_activity"
+        android:layout_width="200dp"
+        android:layout_height="209dp"
+        android:contentDescription="@string/logo_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/shopper_button"
+        android:layout_width="284dp"
+        android:layout_height="70dp"
+        android:background="@drawable/entry_button_background"
+        android:fontFamily="@font/mundial_demibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:onClick="onClickCustomer"
+        android:text="@string/shopper_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/pure_white"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/vendor_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_user_type_selection_activity"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/vendor_button"
+        android:layout_width="284dp"
+        android:layout_height="70dp"
+        android:background="@drawable/entry_button_background"
+        android:fontFamily="@font/mundial_demibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:onClick="onClickVendor"
+        android:text="@string/vendor_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/pure_white"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_user_type_selection_activity"
+        app:layout_constraintVertical_bias="0.6" />
+</androidx.constraintlayout.widget.ConstraintLayout>
