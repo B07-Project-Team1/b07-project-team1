@@ -15,6 +15,7 @@
         android:fontFamily="@font/mundial_demibold"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:onClick="onClickLogin"
         android:text="@string/login_button_text"
         android:textAllCaps="false"
         android:textColor="@color/pure_white"
@@ -76,6 +77,23 @@
         app:layout_constraintTop_toBottomOf="@+id/logo_customer_login_activity" />
 
     <TextView
+        android:id="@+id/customer_login_activity_invalid_credentials_error"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:fontFamily="@font/mundial_regular"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="@string/customer_login_activity_invalid_credentials_error_text"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/customer_login_activity_no_account_question_text"
+        app:layout_constraintEnd_toEndOf="@+id/login_button_customer_login_activity"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/login_button_customer_login_activity"
+        app:layout_constraintTop_toBottomOf="@+id/login_button_customer_login_activity" />
+
+    <TextView
         android:id="@+id/customer_login_activity_no_account_question_text"
         android:layout_width="170dp"
         android:layout_height="36dp"
@@ -100,6 +118,7 @@
         android:fontFamily="@font/mundial_regular"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:onClick="onClickCreateAccount"
         android:text="@string/create_account_button_text_underlined"
         android:textAllCaps="false"
         android:textColor="@color/black"

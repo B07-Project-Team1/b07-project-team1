@@ -7,6 +7,26 @@
     android:background="@color/pure_white"
     tools:context=".CustomerCreateAccount">
 
+    <TextView
+        android:id="@+id/customer_create_account_activity_invalid_credentials_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/mundial_regular"
+        android:gravity="center|top"
+        android:inputType="text"
+        android:ellipsize="none"
+        android:singleLine="false"
+        android:maxLines="2"
+        android:text="@string/customer_login_activity_invalid_credentials_error_text"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:flow_wrapMode="none"
+        app:layout_constraintBottom_toTopOf="@+id/login_button_customer_login_activity2"
+        app:layout_constraintEnd_toEndOf="@+id/customer_create_account_activity_repeat_password_input_field"
+        app:layout_constraintStart_toStartOf="@+id/customer_create_account_activity_repeat_password_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/customer_create_account_activity_repeat_password_input_field" />
+
     <Button
         android:id="@+id/login_button_customer_login_activity2"
         android:layout_width="284dp"
@@ -15,8 +35,9 @@
         android:fontFamily="@font/mundial_demibold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:textAllCaps="false"
+        android:onClick="onClickRegister"
         android:text="@string/create_account_button_text"
+        android:textAllCaps="false"
         android:textColor="@color/pure_white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,6 +69,7 @@
         android:gravity="start|center_vertical"
         android:hint="@string/email_entry_box_text"
         android:inputType="textEmailAddress"
+        android:onClick="onClickRegister"
         android:paddingStart="16dp"
         android:textColorHint="@color/dark_gray"
         android:textSize="20sp"

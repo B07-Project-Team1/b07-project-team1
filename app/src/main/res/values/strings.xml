@@ -7,8 +7,11 @@
     <string name="login_button_text">Login</string>
     <string name="email_entry_box_text">Email:</string>
     <string name="password_entry_box_text">Password:</string>
+    <string name="customer_login_activity_invalid_credentials_error_text"></string>
     <string name="no_account_question_text">Don\'t have an account?</string>
     <string name="create_account_button_text_underlined"><u>Create Account</u></string>
     <string name="repeat_password_entry_box_text">Repeat Password:</string>
     <string name="create_account_button_text">Create Account</string>
+    <string name="create_account_empty_fields_text">You have empty fields.</string>
+    <string name="create_account_password_repeat_no_match_text">Passwords do not Match.</string>
 </resources>
