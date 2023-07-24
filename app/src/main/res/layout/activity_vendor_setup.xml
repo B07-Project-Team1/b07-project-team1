@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pure_white"
+    tools:context=".VendorSetup">
+
+    <Button
+        android:id="@+id/button_vendor_setup_activity"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/entry_button_background"
+        android:fontFamily="@font/mundial_demibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/create_account_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/pure_white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_setup_activity_invalid_error"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <ImageView
+        android:id="@+id/logo_vendor_setup_activity"
+        android:layout_width="70dp"
+        android:layout_height="73dp"
+        android:contentDescription="@string/logo_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/vendor_setup_activity_brand_name_input_field"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/login_info_entry_box_background"
+        android:ems="10"
+        android:fontFamily="@font/mundial_light"
+        android:gravity="start|center_vertical"
+        android:hint="@string/vendor_setup_brand_field_text"
+        android:inputType="textEmailAddress"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/dark_gray"
+        android:textColorHint="@color/dark_gray"
+        android:textColorLink="@color/dark_blue"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logo_vendor_setup_activity"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/vendor_setup_upload_brand_logo_text"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/brand_logo_upload_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_vendor_setup_activity"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <TextView
+        android:id="@+id/vendor_setup_activity_invalid_error"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:fontFamily="@font/mundial_regular"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="@string/setup_activity_invalid_error_text"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_setup_activity_brand_name_input_field" />
+
+
+    <ImageView
+        android:id="@+id/brand_logo_upload_container"
+        android:layout_width="284dp"
+        android:layout_height="269dp"
+        android:background="@drawable/login_info_entry_box_background"
+        android:paddingTop="80dp"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/vendor_setup_activity_brand_name_input_field"
+        app:layout_constraintEnd_toEndOf="@+id/vendor_setup_activity_brand_name_input_field"
+        app:layout_constraintStart_toStartOf="@+id/vendor_setup_activity_brand_name_input_field"
+        app:layout_constraintTop_toBottomOf="@+id/logo_vendor_setup_activity"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/uploadphoto" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

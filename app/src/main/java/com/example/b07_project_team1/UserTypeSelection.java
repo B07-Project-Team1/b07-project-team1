@@ -18,4 +18,9 @@ public class UserTypeSelection extends AppCompatActivity {
         Intent customerLoginIntent = new Intent(this, CustomerLogin.class);
         startActivity(customerLoginIntent);
     }
+
+    public void onClickVendor(View view) {
+        Intent vendorLoginIntent = new Intent(this, VendorLogin.class);
+        startActivity(vendorLoginIntent);
+    }
 }
