@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -86,6 +87,10 @@ public class CustomerCreateAccount extends AppCompatActivity {
 
                             DatabaseReference ref = db.getReference();
                             ref.child("customers").child(user.getUid()).setValue(newCustomer);
+
+                            // Transition the user to the mall page
+                            Intent mallIntent = new Intent(getApplicationContext(), MallActivity.class);
+                            startActivity(mallIntent);
                         } else {
                             String message = task.getException().getMessage();
                             String longErr = "The email address is already in use by another account.";

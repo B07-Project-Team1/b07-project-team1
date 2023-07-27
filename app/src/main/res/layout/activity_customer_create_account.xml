@@ -43,11 +43,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_customer_create_account_activity"
+        app:layout_constraintTop_toBottomOf="@+id/blue_blob"
         app:layout_constraintVertical_bias="0.85" />
 
     <ImageView
-        android:id="@+id/logo_customer_create_account_activity"
+        android:id="@+id/blue_blob"
         android:layout_width="200dp"
         android:layout_height="209dp"
         android:contentDescription="@string/logo_content_description"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_customer_create_account_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/blue_blob" />
 
     <EditText
         android:id="@+id/customer_create_account_activity_password_input_field"
@@ -104,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_customer_create_account_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/blue_blob" />
 
     <EditText
         android:id="@+id/customer_create_account_activity_repeat_password_input_field"
