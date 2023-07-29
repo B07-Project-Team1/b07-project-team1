@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,12 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MallActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    List<String> vendorIdList;
     List<Vendor> dataList;
     DatabaseReference dbr;
     ValueEventListener eventListener;
@@ -57,9 +60,9 @@ public class MallActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
+        vendorIdList = new ArrayList<>();
         dataList = new ArrayList<>();
-
-        MallAdapter adapter = new MallAdapter(MallActivity.this, dataList);
+        MallAdapter adapter = new MallAdapter(MallActivity.this, vendorIdList, dataList);
         recyclerView.setAdapter(adapter);
 
         dbr = FirebaseDatabase.getInstance().getReference("vendors");
@@ -73,13 +76,17 @@ public class MallActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String userInput = charSequence.toString().trim().toLowerCase();
+                List<String> searchIdList = new ArrayList<>();
                 List<Vendor> searchList = new ArrayList<>();
-                for (Vendor vendor: dataList) {
+                for (int pos = 0; pos < dataList.size(); pos++) {
+                    Vendor vendor = dataList.get(pos);
+                    String vendorId = vendorIdList.get(pos);
                     if (vendor.getBrandName().toLowerCase().contains(userInput)) {
                         searchList.add(vendor);
+                        searchIdList.add(vendorId);
                     }
                 }
-                adapter.setDataList(searchList);
+                adapter.setDataList(searchIdList, searchList);
             }
 
             @Override
@@ -98,10 +105,13 @@ public class MallActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataList.clear();
+                vendorIdList.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
                     Vendor dataClass = itemSnapshot.getValue(Vendor.class);
                     dataList.add(dataClass);
+                    vendorIdList.add(itemSnapshot.getKey());
                 }
+                assert dataList.size() == vendorIdList.size();
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }

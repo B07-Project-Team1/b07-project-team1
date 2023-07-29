@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -89,6 +90,12 @@ public class VendorLogin extends AppCompatActivity {
                                             if (brandName.getValue() == null || logoUrl.getValue() == null) {
                                                 Intent vendorSetupIntent = new Intent(getApplicationContext(), VendorSetup.class);
                                                 startActivity(vendorSetupIntent);
+                                            } else {
+                                                Intent storeActivity = new Intent(getApplicationContext(), StoreActivity.class);
+                                                storeActivity.putExtra("IS_VENDOR", true);
+                                                storeActivity.putExtra("VENDOR_STORE_LOGO", (String) logoUrl.getValue());
+                                                storeActivity.putExtra("VENDOR_ID", (String) user.getUid());
+                                                startActivity(storeActivity);
                                             }
                                         }
                                     }
