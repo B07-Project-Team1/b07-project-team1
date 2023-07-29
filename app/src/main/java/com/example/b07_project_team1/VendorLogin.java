@@ -82,6 +82,7 @@ public class VendorLogin extends AppCompatActivity {
                                             if (task.getResult().getValue() == null) {
                                                 FirebaseAuth.getInstance().signOut();
                                                 errorTextView.setText("Email associated with a customer.");
+                                                return;
                                             }
                                             DataSnapshot brandName = task.getResult().child("brandName");
                                             DataSnapshot logoUrl = task.getResult().child("logoUrl");

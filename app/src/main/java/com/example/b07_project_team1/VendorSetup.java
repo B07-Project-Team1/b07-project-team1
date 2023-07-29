@@ -32,7 +32,6 @@ public class VendorSetup extends AppCompatActivity {
     EditText brandNameField;
     TextView errorTextView;
     Button createAccountButton;
-
     ImageView uploadImage;
     String imageUrl;
     Uri uri;
@@ -63,7 +62,7 @@ public class VendorSetup extends AppCompatActivity {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
                             uri = data.getData();
-                            Log.i("setup", uri.getLastPathSegment());
+//                            Log.i("setup", uri.getLastPathSegment()); // Debug options
                             uploadImage.setImageURI(uri);
                         } else {
                             errorTextView.setText("Error in uploading file.");

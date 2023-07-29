@@ -83,8 +83,14 @@ public class CustomerLogin extends AppCompatActivity {
                                             if (task.getResult().getValue() == null) {
                                                 FirebaseAuth.getInstance().signOut();
                                                 errorTextView.setText("Email associated with a vendor.");
+                                                return;
+                                            }
+                                            else {
+                                                Intent mallIntent = new Intent(getApplicationContext(), MallActivity.class);
+                                                startActivity(mallIntent);
                                             }
                                         }
+
                                     }
                                 });
 
