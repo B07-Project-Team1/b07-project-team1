@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.*;
@@ -65,7 +66,7 @@ public class VendorSetup extends AppCompatActivity {
 //                            Log.i("setup", uri.getLastPathSegment()); // Debug options
                             uploadImage.setImageURI(uri);
                         } else {
-                            errorTextView.setText("Error in uploading file.");
+                            errorTextView.setText(R.string.file_upload_error_string);
                             Toast.makeText(VendorSetup.this, "No Image Selected", Toast.LENGTH_SHORT);
                         }
                     }
@@ -94,7 +95,7 @@ public class VendorSetup extends AppCompatActivity {
                 createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
                 createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
                 if (uri == null || brandNameField.getText().toString().isEmpty()) {
-                    errorTextView.setText("You have empty fields.");
+                    errorTextView.setText(R.string.empty_field_error_string);
                     return false;
                 }
 
@@ -114,6 +115,15 @@ public class VendorSetup extends AppCompatActivity {
 
                         ref.child("vendors").child(uid).child("brandName").setValue(brandName);
                         ref.child("vendors").child(uid).child("logoUrl").setValue(imageUrl);
+
+
+
+                        Intent storeIntent = new Intent(VendorSetup.this, StoreActivity.class);
+                        storeIntent.putExtra("IS_VENDOR", true);
+                        storeIntent.putExtra("VENDOR_STORE_LOGO", (String) imageUrl);
+                        storeIntent.putExtra("VENDOR_ID", (String) FirebaseAuth.getInstance().getUid());
+                        startActivity(storeIntent);
+                        finish();
                     }
                 });
             }

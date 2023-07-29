@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/search_store_background"
-        android:layout_width="411dp"
-        android:layout_height="166dp"
+        android:layout_width="412dp"
+        android:layout_height="168dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,8 +26,8 @@
         app:layout_constraintStart_toStartOf="@+id/search_store_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.305"
-        tools:ignore="SpeakableTextPresentCheck"
-        app:srcCompat="@drawable/arrow_left_back" />
+        app:srcCompat="@drawable/arrow_left_back"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/search_bar_store"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="@+id/search_store_background"
         app:layout_constraintStart_toStartOf="@+id/search_store_background"
         app:layout_constraintTop_toBottomOf="@+id/store_logo_inner"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/store_logo_inner"
@@ -56,8 +56,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/search_store_background"
-        app:layout_constraintVertical_bias="0.19"
+        app:layout_constraintVertical_bias="0.068"
         app:srcCompat="@drawable/logo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_marginTop="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/mall_bottom_ribbon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_store"
+        app:layout_constraintVertical_bias="0.62" />
 
     <RelativeLayout
         android:id="@+id/mall_bottom_ribbon"

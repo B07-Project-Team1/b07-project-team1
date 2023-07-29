@@ -1,10 +1,12 @@
 package com.example.b07_project_team1;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.text.TextWatcher;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,11 +22,13 @@ import com.example.b07_project_team1.model.Vendor;
 public class MallAdapter extends RecyclerView.Adapter<StoreHolder> {
 
     private Context context;
+    private List<String> vendorIdList;
     private List<Vendor> dataList;
 
 
-    public MallAdapter(Context context, List<Vendor> dataList) {
+    public MallAdapter(Context context, List<String> vendorIdList, List<Vendor> dataList) {
         this.context = context;
+        this.vendorIdList = vendorIdList;
         this.dataList = dataList;
     }
 
@@ -43,15 +47,20 @@ public class MallAdapter extends RecyclerView.Adapter<StoreHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, StoreActivity.class);
-                intent.putExtra("Image", dataList.get(holder.getAdapterPosition()).getLogoUrl());
-
+                int position = holder.getAdapterPosition();
+                intent.putExtra("IS_VENDOR", false);
+                intent.putExtra("VENDOR_STORE_LOGO", dataList.get(position).getLogoUrl());
+                intent.putExtra("VENDOR_ID", vendorIdList.get(position));
+                intent.putExtra("VENDOR_INFO", dataList.get(position));
                 context.startActivity(intent);
             }
         });
     }
 
     // Changes the datalist provided for the adapter to populate the recycler view
-    public void setDataList(List<Vendor> newDataList) {
+    public void setDataList(List<String> newVendorIdList, List<Vendor> newDataList) {
+        assert newVendorIdList.size() == newDataList.size();
+        this.vendorIdList = newVendorIdList;
         this.dataList = newDataList;
         notifyDataSetChanged();
     }
