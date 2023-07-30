@@ -141,12 +141,9 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
                     ref.child("vendors").child(vendorId).child("orders").child(orderId).setValue(true);
                     ref.child("customers").child(uid).child("pending_orders").child(orderId).setValue(true);
 
-                    //toast on success
-                    CharSequence text = "Order success!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(ProductPageActivity.this, text, duration);
-                    toast.show();
+                    showToast("Order success!");
+                } else {
+                    showToast("Must be customer to purchase!");
                 }
             }
 
@@ -155,6 +152,11 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
             }
         };
         ref.child("customers").child(uid).addListenerForSingleValueEvent(eventListener);
+    }
+
+    void showToast(CharSequence text) {
+        Toast toast = Toast.makeText(ProductPageActivity.this, text, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     void loadVendorInfo() {
