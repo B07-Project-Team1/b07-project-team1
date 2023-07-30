@@ -25,10 +25,10 @@
         android:contentDescription="@string/product_page_image_bg_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_store_logo_inner"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.084" />
 
     <Button
         android:id="@+id/product_page_back_button"
@@ -45,23 +45,22 @@
 
     <ImageView
         android:id="@+id/product_page_image"
-        android:layout_width="312dp"
-        android:layout_height="308dp"
+        android:layout_width="310dp"
+        android:layout_height="307dp"
         android:layout_marginStart="7dp"
         android:contentDescription="@string/product_page_image_content_description"
         app:layout_constraintBottom_toBottomOf="@+id/product_page_image_bg"
         app:layout_constraintEnd_toEndOf="@+id/product_page_image_bg"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="@+id/product_page_image_bg"
         app:layout_constraintTop_toTopOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.476" />
 
     <TextView
         android:id="@+id/product_page_product_name"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
-        android:text="asdasdsda lasdjlaksd"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
         android:typeface="normal"
@@ -77,7 +76,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
-        android:text="$50000.00"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/product_page_product_info"
@@ -93,7 +91,6 @@
         android:layout_height="60.8dp"
         android:fontFamily="@font/mundial_regular"
         android:paddingTop="5dp"
-        android:text="asdasd"
         android:textAlignment="textStart"
         android:textColor="#ABABAB"
         android:textSize="14sp"
