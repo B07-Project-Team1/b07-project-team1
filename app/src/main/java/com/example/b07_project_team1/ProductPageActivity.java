@@ -11,14 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.b07_project_team1.model.Order;
 import com.example.b07_project_team1.model.Product;
 import com.example.b07_project_team1.model.Vendor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
+
+import java.util.HashMap;
 
 public class ProductPageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +44,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
     Button countButtonP;
     Button cartButton;
     Button buyButton;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -83,7 +89,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         cartButton.setOnClickListener(this);
         buyButton = (Button) findViewById((R.id.product_page_buy_button));
         buyButton.setOnClickListener(this);
-        
+
     }
 
     @Override
@@ -101,10 +107,23 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
                 productQuantity.setText(Integer.toString(count));
             }
         } else if (v.getId() == R.id.product_page_cart_button) {
-            //TODO
+            //TODO issue-8
         } else if (v.getId() == R.id.product_page_buy_button) {
-
+            addOrder(count);
         }
+    }
+
+    void addOrder(int quantity) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        HashMap<String, Integer> items = new HashMap<>();
+        items.put(product.getProductName(), quantity);
+        assert user != null;
+        Order order = new Order(user.getUid(), vendorId, items, false);
+
+        DatabaseReference newOrderRef = FirebaseDatabase.getInstance().getReference().child("orders").push();
+        String orderId = newOrderRef.getKey();
+        newOrderRef.setValue(order);
     }
 
     void loadVendorInfo() {
