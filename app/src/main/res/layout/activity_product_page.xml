@@ -61,13 +61,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
+        android:text="12312312"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="@+id/product_page_image_bg"
         app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
         app:layout_constraintVertical_bias="0.031" />
 
@@ -76,11 +77,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
+        android:text="$5000.00"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintEnd_toEndOf="@+id/product_page_image_bg"
+        app:layout_constraintHorizontal_bias="0.965"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
         app:layout_constraintVertical_bias="0.031" />
@@ -88,7 +90,7 @@
     <TextView
         android:id="@+id/product_page_product_info"
         android:layout_width="306dp"
-        android:layout_height="70.8dp"
+        android:layout_height="60.8dp"
         android:fontFamily="@font/mundial_regular"
         android:textAlignment="textStart"
         android:textColor="#ABABAB"
@@ -99,7 +101,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.181" />
 
     <Button
         android:id="@+id/product_page_minus_button"
@@ -108,11 +110,11 @@
         android:layout_marginStart="100dp"
         android:background="@drawable/minus"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bot_rect"
         app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <Button
         android:id="@+id/product_page_plus_button"
@@ -121,39 +123,38 @@
         android:layout_marginEnd="100dp"
         android:background="@drawable/plus"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bot_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
         app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <TextView
         android:id="@+id/product_page_quantity"
         android:layout_width="35dp"
         android:layout_height="28dp"
         android:fontFamily="@font/mundial_light"
+        android:text="65"
         android:textAlignment="center"
         android:textColor="#ABABAB"
         android:textSize="24sp"
         android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bot_rect"
         app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
         app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.22" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/bot_rect"
         android:layout_width="344dp"
         android:layout_height="88dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/product_page_bot_rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_page_quantity"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/product_page_cart_button"
@@ -162,11 +163,11 @@
         android:background="@drawable/cart_button"
         android:fontFamily="@font/mundial_bold"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/bot_rect"
         app:layout_constraintEnd_toStartOf="@+id/product_page_buy_button"
         app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/bot_rect"
+        app:layout_constraintTop_toTopOf="@+id/bot_rect" />
 
     <Button
         android:id="@+id/product_page_buy_button"
@@ -174,11 +175,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/buy_button"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/bot_rect"
         app:layout_constraintEnd_toEndOf="@+id/product_page_cart_button"
         app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/bot_rect"
+        app:layout_constraintTop_toTopOf="@+id/bot_rect" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
