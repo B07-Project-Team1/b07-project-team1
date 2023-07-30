@@ -58,48 +58,52 @@
 
     <TextView
         android:id="@+id/product_page_product_name"
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
+        android:text="asdasdsda lasdjlaksd"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="@+id/product_page_image_bg"
         app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/product_page_product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mundial_demibold"
+        android:text="$50000.00"
         android:textColor="#1A1A1A"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/product_page_product_info"
         app:layout_constraintEnd_toEndOf="@+id/product_page_image_bg"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <TextView
         android:id="@+id/product_page_product_info"
         android:layout_width="306dp"
         android:layout_height="60.8dp"
         android:fontFamily="@font/mundial_regular"
+        android:paddingTop="5dp"
+        android:text="asdasd"
         android:textAlignment="textStart"
         android:textColor="#ABABAB"
         android:textSize="14sp"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintEnd_toEndOf="@+id/product_page_product_price"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/product_page_product_name"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_product_name"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/product_page_minus_button"
