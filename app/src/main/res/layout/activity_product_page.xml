@@ -10,7 +10,7 @@
         android:id="@+id/product_page_store_logo_inner"
         android:layout_width="89dp"
         android:layout_height="58dp"
-        android:contentDescription="@strings/product_page_store_logo_inner_cd"
+        android:contentDescription="@string/product_page_store_logo_inner_cd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
