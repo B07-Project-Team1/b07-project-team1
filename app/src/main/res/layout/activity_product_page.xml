@@ -8,12 +8,177 @@
 
     <ImageView
         android:id="@+id/product_page_store_logo_inner"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="89dp"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038"
         app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/product_page_image_bg"
+        android:layout_width="328dp"
+        android:layout_height="328dp"
+        android:background="@drawable/product_page_image_bg"
+        android:contentDescription="@string/product_page_image_bg_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_store_logo_inner"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <Button
+        android:id="@+id/product_back_button"
+        android:layout_width="28dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/arrow_left_back"
+        app:layout_constraintBottom_toTopOf="@+id/product_page_image_bg"
+        app:layout_constraintEnd_toStartOf="@+id/product_page_store_logo_inner"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/product_page_image"
+        android:layout_width="312dp"
+        android:layout_height="308dp"
+        android:layout_marginStart="7dp"
+        android:contentDescription="@string/product_page_image_content_description"
+        app:layout_constraintBottom_toBottomOf="@+id/product_page_image_bg"
+        app:layout_constraintEnd_toEndOf="@+id/product_page_image_bg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/product_page_image_bg"
+        app:layout_constraintTop_toTopOf="@+id/product_page_image_bg"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/product_page_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mundial_demibold"
+        android:textColor="#1A1A1A"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
+        app:layout_constraintVertical_bias="0.031" />
+
+    <TextView
+        android:id="@+id/product_page_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mundial_demibold"
+        android:textColor="#1A1A1A"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
+        app:layout_constraintVertical_bias="0.031" />
+
+    <TextView
+        android:id="@+id/product_page_product_info"
+        android:layout_width="306dp"
+        android:layout_height="70.8dp"
+        android:fontFamily="@font/mundial_regular"
+        android:textAlignment="textStart"
+        android:textColor="#ABABAB"
+        android:textSize="14sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_image_bg"
+        app:layout_constraintVertical_bias="0.226" />
+
+    <Button
+        android:id="@+id/product_page_minus_button"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="100dp"
+        android:background="@drawable/minus"
+        android:foreground="@drawable/minus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <Button
+        android:id="@+id/product_page_plus_button"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/plus"
+        android:foreground="@drawable/plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <TextView
+        android:id="@+id/product_page_quantity_count"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/mundial_light"
+        android:textAlignment="center"
+        android:textColor="#ABABAB"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="344dp"
+        android:layout_height="88dp"
+        android:background="@drawable/product_page_bot_rect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_page_quantity_count"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <Button
+        android:id="@+id/product_page_cart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cart_button"
+        android:fontFamily="@font/mundial_bold"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/product_page_buy_button"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/product_page_buy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buy_button"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/product_page_cart_button"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

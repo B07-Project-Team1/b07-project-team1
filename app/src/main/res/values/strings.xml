@@ -29,4 +29,6 @@
     <string name="file_upload_error_string">Error in uploading file.</string>
     <string name="empty_field_error_string">You have empty fields.</string>
     <string name="price_error_string">Price must be positive.</string>
+    <string name="product_page_image_content_description">Product Image</string>
+    <string name="product_page_image_bg_content_description"></string>
 </resources>

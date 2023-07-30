@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.b07_project_team1.model.Product;
@@ -20,11 +21,16 @@ import com.google.firebase.ktx.Firebase;
 public class ProductPageActivity extends AppCompatActivity {
 
     ImageView storeLogo;
+    ImageView productImage;
+    TextView productName;
+    TextView productInfo;
+    TextView productPrice;
     String productImageUrl;
     Product product;
     String productId;
     String vendorId;
     Vendor vendor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +41,22 @@ public class ProductPageActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
 
-        productImageUrl = bundle.getString("IMAGE_URL");
+        productImageUrl = bundle.getString("PRODUCT_IMAGE");
         product = bundle.getSerializable("PRODUCT_INFO", Product.class);
         productId = bundle.getString("PRODUCT_ID");
         vendorId = product.getVendorId();
+
+        productImage = (ImageView) findViewById(R.id.product_page_image);
+        Glide.with(ProductPageActivity.this).load(productImageUrl).into(productImage);
+
+        productName = (TextView) findViewById(R.id.product_page_product_name);
+        productName.setText(product.getProductName());
+
+        productInfo = (TextView) findViewById(R.id.product_page_product_info);
+        productInfo.setText(product.getDescription());
+
+        productPrice = (TextView) findViewById(R.id.product_page_product_price);
+        productPrice.setText("$" + Double.toString(product.getPrice()));
 
         loadVendorInfo();
     }
