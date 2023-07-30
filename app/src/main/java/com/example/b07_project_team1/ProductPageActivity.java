@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,8 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.b07_project_team1.model.Order;
 import com.example.b07_project_team1.model.Product;
 import com.example.b07_project_team1.model.Vendor;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.ktx.Firebase;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class ProductPageActivity extends AppCompatActivity implements View.OnClickListener {
@@ -65,33 +60,33 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         productId = bundle.getString("PRODUCT_ID");
         vendorId = product.getVendorId();
 
-        productImage = (ImageView) findViewById(R.id.product_page_image);
+        productImage = findViewById(R.id.product_page_image);
         Glide.with(ProductPageActivity.this).load(productImageUrl).into(productImage);
 
-        productName = (TextView) findViewById(R.id.product_page_product_name);
+        productName = findViewById(R.id.product_page_product_name);
         productName.setText(product.getProductName());
 
-        productInfo = (TextView) findViewById(R.id.product_page_product_info);
+        productInfo = findViewById(R.id.product_page_product_info);
         productInfo.setText(product.getDescription());
 
-        productPrice = (TextView) findViewById(R.id.product_page_product_price);
+        productPrice = findViewById(R.id.product_page_product_price);
         productPrice.setText("$" + String.format("%.2f", (product.getPrice())));
 
-        productQuantity = (TextView) findViewById(R.id.product_page_quantity);
+        productQuantity = findViewById(R.id.product_page_quantity);
         productQuantity.setText("1");
 
         ref = FirebaseDatabase.getInstance().getReference();
         loadVendorInfo();
 
-        backButton = (Button) findViewById(R.id.product_page_back_button);
+        backButton = findViewById(R.id.product_page_back_button);
         backButton.setOnClickListener(this);
-        countButtonM = (Button) findViewById(R.id.product_page_minus_button);
+        countButtonM = findViewById(R.id.product_page_minus_button);
         countButtonM.setOnClickListener(this);
-        countButtonP = (Button) findViewById(R.id.product_page_plus_button);
+        countButtonP = findViewById(R.id.product_page_plus_button);
         countButtonP.setOnClickListener(this);
-        cartButton = (Button) findViewById(R.id.product_page_cart_button);
+        cartButton = findViewById(R.id.product_page_cart_button);
         cartButton.setOnClickListener(this);
-        buyButton = (Button) findViewById((R.id.product_page_buy_button));
+        buyButton = findViewById((R.id.product_page_buy_button));
         buyButton.setOnClickListener(this);
 
     }
