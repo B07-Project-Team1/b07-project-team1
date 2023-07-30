@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class ProductPageActivity extends AppCompatActivity implements View.OnClickListener {
@@ -74,7 +75,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         productInfo.setText(product.getDescription());
 
         productPrice = (TextView) findViewById(R.id.product_page_product_price);
-        productPrice.setText("$" + Double.toString(product.getPrice()));
+        productPrice.setText("$" + String.format("%.2f", (product.getPrice())));
 
         productQuantity = (TextView) findViewById(R.id.product_page_quantity);
         productQuantity.setText("1");
