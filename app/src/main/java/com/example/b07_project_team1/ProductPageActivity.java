@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.b07_project_team1.model.Order;
@@ -19,8 +20,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
 
 import java.util.HashMap;
@@ -44,8 +47,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
     Button countButtonP;
     Button cartButton;
     Button buyButton;
-    private FirebaseAuth mAuth;
-
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         productQuantity = (TextView) findViewById(R.id.product_page_quantity);
         productQuantity.setText("1");
 
+        ref = FirebaseDatabase.getInstance().getReference();
         loadVendorInfo();
 
         backButton = (Button) findViewById(R.id.product_page_back_button);
@@ -114,16 +117,43 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
     }
 
     void addOrder(int quantity) {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        HashMap<String, Integer> items = new HashMap<>();
-        items.put(product.getProductName(), quantity);
-        assert user != null;
-        Order order = new Order(user.getUid(), vendorId, items, false);
 
-        DatabaseReference newOrderRef = FirebaseDatabase.getInstance().getReference().child("orders").push();
-        String orderId = newOrderRef.getKey();
-        newOrderRef.setValue(order);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        String uid = user.getUid();
+        ValueEventListener eventListener = new ValueEventListener() {//place order iff user is customer
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {//check user id exists in customer records
+                    //create order and write to db
+                    HashMap<String, Integer> items = new HashMap<>();
+                    items.put(product.getProductName(), quantity);
+                    Order order = new Order(uid, vendorId, items, false);
+                    DatabaseReference newOrderRef = ref.child("orders").push();
+                    newOrderRef.setValue(order);
+
+                    String orderId = newOrderRef.getKey();
+                    assert orderId != null;
+
+                    //update vendor+customer accordingly
+                    ref.child("vendors").child(vendorId).child("orders").child(orderId).setValue(true);
+                    ref.child("customers").child(uid).child("pending_orders").child(orderId).setValue(true);
+
+                    //toast on success
+                    CharSequence text = "Order success!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(ProductPageActivity.this, text, duration);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        };
+        ref.child("customers").child(uid).addListenerForSingleValueEvent(eventListener);
     }
 
     void loadVendorInfo() {
