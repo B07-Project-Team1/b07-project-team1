@@ -81,19 +81,6 @@ public class StoreActivity extends AppCompatActivity {
             }
         });
 
-        searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                searchedProducts(editable.toString());
-            }
-        });
-
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,20 +152,6 @@ public class StoreActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             });
         });
-    }
-
-    private void searchedProducts(String userSearch) {
-        List<Product> userRequestedproduct = new ArrayList<>();
-        List<String> userReqProductId = new ArrayList<>();
-        for (int i = 0; i < productDataList.size(); i++) {
-            Product product = productDataList.get(i);
-            String productID = productIdList.get(i);
-            if (product.getProductName().toLowerCase().contains(userSearch)) {
-                userRequestedproduct.add(product);
-                userReqProductId.add(productID);
-            }
-        }
-        adapter.setDataList(userReqProductId, userRequestedproduct);
     }
 
     void createProductsGrid() {
