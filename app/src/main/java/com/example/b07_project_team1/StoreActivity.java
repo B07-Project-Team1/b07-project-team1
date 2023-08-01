@@ -37,7 +37,7 @@ public class StoreActivity extends AppCompatActivity {
     ImageButton ordersButton;
     ImageButton cartButton;
     ImageButton mallBack;
-    TextView searchBar;
+    TextView storeSearchBar;
     RecyclerView recyclerView;
     List<String> productIdList;
     List<Product> productDataList;
@@ -53,7 +53,7 @@ public class StoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_detail);
 
         storeLogo = findViewById(R.id.store_logo_inner);
-        searchBar = findViewById(R.id.search_bar_store);
+        storeSearchBar = findViewById(R.id.search_bar_store);
         searchButton = findViewById(R.id.store_ribbon_search);
         ordersButton = findViewById(R.id.store_ribbon_orders);
         cartButton = findViewById(R.id.store_ribbon_cart);
@@ -76,8 +76,37 @@ public class StoreActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchBar.requestFocus();
+                storeSearchBar.requestFocus();
                 showSoftKeyboard();
+            }
+        });
+
+        storeSearchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String userInput = charSequence.toString().trim().toLowerCase();
+                List<Product> userSearchProduct = new ArrayList<>();
+                List<String> userSearchProductID = new ArrayList<>();
+
+                for (int index = 0; index < productDataList.size(); index++) {
+                    Product product = productDataList.get(index);
+                    String productID = productIdList.get(index);
+                    if (product.getProductName().toLowerCase().contains(userInput)) {
+                        userSearchProduct.add(product);
+                        userSearchProductID.add(productID);
+                    }
+                }
+                adapter.setDataList(userSearchProductID, userSearchProduct);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -113,9 +142,10 @@ public class StoreActivity extends AppCompatActivity {
     private void showSoftKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputManager != null) {
-            inputManager.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
+            inputManager.showSoftInput(storeSearchBar, InputMethodManager.SHOW_IMPLICIT);
         }
     }
+
     void getProductList(String vendorId) {
         DatabaseReference vendorProductIdList = FirebaseDatabase.getInstance()
                 .getReference("vendors").child(vendorId).child("products");

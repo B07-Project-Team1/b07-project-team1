@@ -31,13 +31,11 @@
         android:id="@+id/preview_product_frame"
         android:layout_width="310dp"
         android:layout_height="288dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="92dp"
         android:src="@drawable/preview_image_holder"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preview_product_title_holder"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintTop_toBottomOf="@+id/preview_product_title_holder" />
 
     <ImageView
         android:id="@+id/preview_product_image_holder"
