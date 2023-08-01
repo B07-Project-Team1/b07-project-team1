@@ -15,30 +15,20 @@ import android.widget.TextView;
 import android.text.TextWatcher;
 
 import com.bumptech.glide.Glide;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.b07_project_team1.model.Product;
 import com.example.b07_project_team1.model.Vendor;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class StoreActivity extends AppCompatActivity {
 
@@ -60,7 +50,7 @@ public class StoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_detail);
+        setContentView(R.layout.activity_store_detail);
 
         storeLogo = findViewById(R.id.store_logo_inner);
         searchBar = findViewById(R.id.search_bar_store);
@@ -100,7 +90,7 @@ public class StoreActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filterProducts(editable.toString());
+                searchedProducts(editable.toString());
             }
         });
 
@@ -177,7 +167,7 @@ public class StoreActivity extends AppCompatActivity {
         });
     }
 
-    private void filterProducts(String userSearch) {
+    private void searchedProducts(String userSearch) {
         List<Product> userRequestedproduct = new ArrayList<>();
         List<String> userReqProductId = new ArrayList<>();
         for (int i = 0; i < productDataList.size(); i++) {

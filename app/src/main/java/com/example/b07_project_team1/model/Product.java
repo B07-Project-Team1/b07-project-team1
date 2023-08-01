@@ -1,5 +1,10 @@
 package com.example.b07_project_team1.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
