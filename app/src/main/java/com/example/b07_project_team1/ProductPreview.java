@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class ProductPreview extends DialogFragment {
     ImageView productImage;
     TextView productTitle;
     TextView productPrice;
+    ImageButton previewClose;
 
 
     public ProductPreview() {
@@ -44,6 +46,18 @@ public class ProductPreview extends DialogFragment {
                 productPrice.setText("$" + String.format("%.2f", (product.getPrice())));
             }
         }
+
+
+        previewClose = view.findViewById(R.id.preview_close);
+        previewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+
         return view;
     }
+
+
 }
