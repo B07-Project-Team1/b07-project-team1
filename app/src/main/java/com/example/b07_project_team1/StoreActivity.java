@@ -3,16 +3,21 @@ package com.example.b07_project_team1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.text.TextWatcher;
+import com.example.b07_project_team1.R;
 
 import com.bumptech.glide.Glide;
 
@@ -20,9 +25,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.b07_project_team1.model.Product;
 import com.example.b07_project_team1.model.Vendor;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +44,7 @@ public class StoreActivity extends AppCompatActivity {
     ImageButton ordersButton;
     ImageButton cartButton;
     ImageButton mallBack;
+    ImageButton userMenuButton;
     TextView storeSearchBar;
     RecyclerView recyclerView;
     List<String> productIdList;
@@ -44,6 +52,8 @@ public class StoreActivity extends AppCompatActivity {
     String vendorId;
     Vendor vendor;
     boolean isVendor;
+
+    FirebaseAuth userAuth;
 
     StoreAdapter adapter;
 
@@ -62,6 +72,9 @@ public class StoreActivity extends AppCompatActivity {
         productDataList = new ArrayList<>();
         storeLogo = findViewById(R.id.store_logo_inner);
         recyclerView = findViewById(R.id.product_recycler_view);
+        userMenuButton = findViewById(R.id.store_ribbon_user);
+
+        userAuth = FirebaseAuth.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
@@ -72,6 +85,13 @@ public class StoreActivity extends AppCompatActivity {
         assert vendorId != null;
         createProductsGrid();
         getProductList(vendorId);
+
+        userMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUpMenu(view);
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +150,34 @@ public class StoreActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showPopUpMenu(View view) {
+        PopupMenu userPopupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = userPopupMenu.getMenuInflater();
+        inflater.inflate(R.menu.ribbon_user_icon_popup, userPopupMenu.getMenu());
+
+        userPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_logout_option) {
+                    userLogout();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        userPopupMenu.show();
+    }
+
+    private void userLogout() {
+        userAuth.signOut();
+        Intent userSelection = new Intent(getApplicationContext(), UserTypeSelection.class);
+        startActivity(userSelection);
+        finish();
+        Toast.makeText(StoreActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
