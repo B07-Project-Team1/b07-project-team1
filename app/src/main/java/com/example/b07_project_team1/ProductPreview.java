@@ -25,7 +25,6 @@ public class ProductPreview extends DialogFragment {
         // Pass
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
