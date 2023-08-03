@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -158,7 +159,6 @@ public class StoreActivity extends AppCompatActivity {
         inflater.inflate(R.menu.ribbon_user_icon_popup, userPopupMenu.getMenu());
 
         userPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_logout_option) {
@@ -171,6 +171,7 @@ public class StoreActivity extends AppCompatActivity {
         });
         userPopupMenu.show();
     }
+
 
     private void userLogout() {
         userAuth.signOut();
