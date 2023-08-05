@@ -13,6 +13,9 @@
         android:theme="@style/Theme.B07projectteam1"
         tools:targetApi="31">
         <activity
+            android:name=".CheckoutOrder"
+            android:exported="false" />
+        <activity
             android:name=".ProductPageActivity"
             android:exported="false" />
         <activity

@@ -2,6 +2,7 @@ package com.example.b07_project_team1;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,7 @@ public class MallActivity extends AppCompatActivity {
 
     EditText searchBar;
     ImageButton searchButton;
+    ImageButton cartButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MallActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         searchBar = findViewById(R.id.search_bar_mall);
         searchButton = findViewById(R.id.ribbon_search);
+        cartButton = findViewById(R.id.ribbon_cart);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MallActivity.this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -67,6 +71,12 @@ public class MallActivity extends AppCompatActivity {
 
         dbr = FirebaseDatabase.getInstance().getReference("vendors");
         dialog.show(); ////// CHANGE MAYBE REQUIRED
+
+        // Successful order message
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         // Search Function
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -98,6 +108,14 @@ public class MallActivity extends AppCompatActivity {
             public void onClick(View view) {
                 searchBar.requestFocus();
                 showSoftKeyboard();
+            }
+        });
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutOrder.class);
+                startActivity(checkoutIntent);
             }
         });
 
