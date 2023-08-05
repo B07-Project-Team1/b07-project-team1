@@ -3,42 +3,40 @@ package com.example.b07_project_team1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.text.TextWatcher;
+import com.example.b07_project_team1.R;
 
 import com.bumptech.glide.Glide;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.b07_project_team1.model.Product;
 import com.example.b07_project_team1.model.Vendor;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class StoreActivity extends AppCompatActivity {
 
@@ -47,7 +45,8 @@ public class StoreActivity extends AppCompatActivity {
     ImageButton ordersButton;
     ImageButton cartButton;
     ImageButton mallBack;
-    TextView searchBar;
+    ImageButton userMenuButton;
+    TextView storeSearchBar;
     RecyclerView recyclerView;
     List<String> productIdList;
     List<Product> productDataList;
@@ -55,15 +54,17 @@ public class StoreActivity extends AppCompatActivity {
     Vendor vendor;
     boolean isVendor;
 
+    FirebaseAuth userAuth;
+
     StoreAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_detail);
+        setContentView(R.layout.activity_store_detail);
 
         storeLogo = findViewById(R.id.store_logo_inner);
-        searchBar = findViewById(R.id.search_bar_store);
+        storeSearchBar = findViewById(R.id.search_bar_store);
         searchButton = findViewById(R.id.store_ribbon_search);
         ordersButton = findViewById(R.id.store_ribbon_orders);
         cartButton = findViewById(R.id.store_ribbon_cart);
@@ -72,6 +73,9 @@ public class StoreActivity extends AppCompatActivity {
         productDataList = new ArrayList<>();
         storeLogo = findViewById(R.id.store_logo_inner);
         recyclerView = findViewById(R.id.product_recycler_view);
+        userMenuButton = findViewById(R.id.store_ribbon_user);
+
+        userAuth = FirebaseAuth.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
@@ -83,24 +87,47 @@ public class StoreActivity extends AppCompatActivity {
         createProductsGrid();
         getProductList(vendorId);
 
+        userMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUpMenu(view);
+            }
+        });
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchBar.requestFocus();
+                storeSearchBar.requestFocus();
                 showSoftKeyboard();
             }
         });
 
-        searchBar.addTextChangedListener(new TextWatcher() {
+        storeSearchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String userInput = charSequence.toString().trim().toLowerCase();
+                List<Product> userSearchProduct = new ArrayList<>();
+                List<String> userSearchProductID = new ArrayList<>();
+
+                for (int index = 0; index < productDataList.size(); index++) {
+                    Product product = productDataList.get(index);
+                    String productID = productIdList.get(index);
+                    if (product.getProductName().toLowerCase().contains(userInput)) {
+                        userSearchProduct.add(product);
+                        userSearchProductID.add(productID);
+                    }
+                }
+                adapter.setDataList(userSearchProductID, userSearchProduct);
+            }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filterProducts(editable.toString());
+
             }
         });
 
@@ -126,6 +153,34 @@ public class StoreActivity extends AppCompatActivity {
 
     }
 
+    private void showPopUpMenu(View view) {
+        PopupMenu userPopupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = userPopupMenu.getMenuInflater();
+        inflater.inflate(R.menu.ribbon_user_icon_popup, userPopupMenu.getMenu());
+
+        userPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_logout_option) {
+                    userLogout();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        userPopupMenu.show();
+    }
+
+
+    private void userLogout() {
+        userAuth.signOut();
+        Intent userSelection = new Intent(getApplicationContext(), UserTypeSelection.class);
+        startActivity(userSelection);
+        finish();
+        Toast.makeText(StoreActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -136,9 +191,10 @@ public class StoreActivity extends AppCompatActivity {
     private void showSoftKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputManager != null) {
-            inputManager.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
+            inputManager.showSoftInput(storeSearchBar, InputMethodManager.SHOW_IMPLICIT);
         }
     }
+
     void getProductList(String vendorId) {
         DatabaseReference vendorProductIdList = FirebaseDatabase.getInstance()
                 .getReference("vendors").child(vendorId).child("products");
@@ -175,20 +231,6 @@ public class StoreActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             });
         });
-    }
-
-    private void filterProducts(String userSearch) {
-        List<Product> userRequestedproduct = new ArrayList<>();
-        List<String> userReqProductId = new ArrayList<>();
-        for (int i = 0; i < productDataList.size(); i++) {
-            Product product = productDataList.get(i);
-            String productID = productIdList.get(i);
-            if (product.getProductName().toLowerCase().contains(userSearch)) {
-                userRequestedproduct.add(product);
-                userReqProductId.add(productID);
-            }
-        }
-        adapter.setDataList(userReqProductId, userRequestedproduct);
     }
 
     void createProductsGrid() {
