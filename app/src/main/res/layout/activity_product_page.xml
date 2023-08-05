@@ -141,13 +141,13 @@
         app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
         app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
         app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <ImageView
         android:id="@+id/bot_rect"
         android:layout_width="344dp"
         android:layout_height="88dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/product_page_bot_rect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
