@@ -65,8 +65,8 @@
 
             <ImageView
                 android:id="@+id/preview_product_image_holder"
-                android:layout_width="288dp"
-                android:layout_height="274dp"
+                android:layout_width="289dp"
+                android:layout_height="272dp"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toBottomOf="@+id/preview_product_frame"
                 app:layout_constraintEnd_toEndOf="@+id/preview_product_frame"
