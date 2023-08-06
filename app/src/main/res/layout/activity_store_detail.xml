@@ -64,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="450dp"
         android:layout_marginTop="19dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/mall_bottom_ribbon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
