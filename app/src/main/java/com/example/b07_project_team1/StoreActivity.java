@@ -138,7 +138,8 @@ public class StoreActivity extends AppCompatActivity {
                     Intent addProductIntent = new Intent(getApplicationContext(), VendorAddProduct.class);
                     startActivity(addProductIntent);
                 } else {
-                    // TODO: customer task
+                    Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutOrder.class);
+                    startActivity(checkoutIntent);
                 }
             }
         });
