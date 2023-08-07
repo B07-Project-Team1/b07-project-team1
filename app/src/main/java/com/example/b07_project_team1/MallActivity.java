@@ -2,14 +2,19 @@ package com.example.b07_project_team1;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.EditText;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +25,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b07_project_team1.model.Vendor;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,11 +41,15 @@ public class MallActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<String> vendorIdList;
     List<Vendor> dataList;
+    ImageButton userMenuButton;
     DatabaseReference dbr;
+    FirebaseAuth userAuth;
     ValueEventListener eventListener;
 
     EditText searchBar;
     ImageButton searchButton;
+    ImageButton cartButton;
+    ImageButton ordersButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +59,11 @@ public class MallActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         searchBar = findViewById(R.id.search_bar_mall);
         searchButton = findViewById(R.id.ribbon_search);
+        cartButton = findViewById(R.id.ribbon_cart);
+        userMenuButton = findViewById(R.id.ribbon_user);
+        ordersButton = findViewById(R.id.ribbon_orders);
 
+        userAuth = FirebaseAuth.getInstance();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MallActivity.this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -67,6 +81,12 @@ public class MallActivity extends AppCompatActivity {
 
         dbr = FirebaseDatabase.getInstance().getReference("vendors");
         dialog.show(); ////// CHANGE MAYBE REQUIRED
+
+        // Successful order message
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         // Search Function
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -101,6 +121,29 @@ public class MallActivity extends AppCompatActivity {
             }
         });
 
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutOrder.class);
+                startActivity(checkoutIntent);
+            }
+        });
+
+        userMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUpMenu(view);
+            }
+        });
+
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                startActivity(ordersIntent);
+            }
+        });
+
         eventListener = dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,6 +164,33 @@ public class MallActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void showPopUpMenu(View view) {
+        PopupMenu userPopupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = userPopupMenu.getMenuInflater();
+        inflater.inflate(R.menu.ribbon_user_icon_popup, userPopupMenu.getMenu());
+
+        userPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_logout_option) {
+                    userLogout();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        userPopupMenu.show();
+    }
+
+    private void userLogout() {
+        userAuth.signOut();
+        Intent userSelection = new Intent(getApplicationContext(), UserTypeSelection.class);
+        startActivity(userSelection);
+        finish();
+        Toast.makeText(MallActivity.this, "Logout Successful!", Toast.LENGTH_SHORT).show();
     }
 
     private void showSoftKeyboard() {

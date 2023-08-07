@@ -31,4 +31,6 @@
     <string name="price_error_string">Price must be positive.</string>
     <string name="product_page_image_cd">Product Image</string>
     <string name="product_page_store_logo_inner_cd">Store Logo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

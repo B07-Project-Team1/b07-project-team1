@@ -1,13 +1,16 @@
 package com.example.b07_project_team1;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -53,6 +56,21 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder> {
                 productPageIntent.putExtra("VENDOR_INFO", vendor);
                 productPageIntent.putExtra("PRODUCT_ID", productIdList.get(position));
                 context.startActivity(productPageIntent);
+            }
+        });
+
+        Product product = dataList.get(position);
+        holder.recCard.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View view) {
+                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                ProductPreview productPreview = new ProductPreview();
+                Bundle args = new Bundle();
+                args.putSerializable("product", product);
+                productPreview.setArguments(args);
+                productPreview.show(fragmentManager, "product_preview");
+                return true;
             }
         });
     }

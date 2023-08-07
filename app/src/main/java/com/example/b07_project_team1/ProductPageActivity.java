@@ -1,9 +1,14 @@
 package com.example.b07_project_team1;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -106,11 +111,32 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
                 productQuantity.setText(Integer.toString(count));
             }
         } else if (v.getId() == R.id.product_page_cart_button) {
-            //TODO issue-8
+            addToCart(count);
         } else if (v.getId() == R.id.product_page_buy_button) {
             addOrder(count);
         }
     }
+
+    void addToCart(int quantity) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ref.child("customers").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Integer currentQuantity = snapshot.child("cart").child(productId).getValue(Integer.class);
+                ref.child("customers").child(uid).child("cart").child(productId).setValue((currentQuantity == null) ? count : currentQuantity + count);
+                showToast("Added to cart!");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("product page", "Couldn't load data");
+            }
+        });
+
+
+
+    }
+
 
     void addOrder(int quantity) {
 
@@ -122,15 +148,19 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {//check user id exists in customer records
-                    //create order and write to db
-                    HashMap<String, Integer> items = new HashMap<>();
-                    items.put(product.getProductName(), quantity);
-                    Order order = new Order(uid, vendorId, items, false);
                     DatabaseReference newOrderRef = ref.child("orders").push();
-                    newOrderRef.setValue(order);
-
                     String orderId = newOrderRef.getKey();
                     assert orderId != null;
+
+                    //create order and write to db
+                    HashMap<String, Integer> items = new HashMap<>();
+                    items.put(productId, quantity);
+
+                    String formattedDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(LocalDateTime.now());
+
+                    Order order = new Order(uid, vendorId, items, false, formattedDate);
+
+                    newOrderRef.setValue(order);
 
                     //update vendor+customer accordingly
                     ref.child("vendors").child(vendorId).child("orders").child(orderId).setValue(true);
