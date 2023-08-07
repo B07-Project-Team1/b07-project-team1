@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -117,9 +116,9 @@ class MyViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         productImage = itemView.findViewById(R.id.product_image);
-        productName = itemView.findViewById(R.id.product_name);
-        productBrand = itemView.findViewById(R.id.product_brand);
-        productPrice = itemView.findViewById(R.id.product_price);
+        productName = itemView.findViewById(R.id.cart_product_name);
+        productBrand = itemView.findViewById(R.id.cart_product_brand);
+        productPrice = itemView.findViewById(R.id.cart_product_price);
         productCount = itemView.findViewById(R.id.product_count);
         plusButton = itemView.findViewById(R.id.checkout_plus_button);
         minusButton = itemView.findViewById(R.id.checkout_minus_button);

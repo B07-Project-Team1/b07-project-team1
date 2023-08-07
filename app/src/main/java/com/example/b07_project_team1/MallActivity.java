@@ -49,6 +49,7 @@ public class MallActivity extends AppCompatActivity {
     EditText searchBar;
     ImageButton searchButton;
     ImageButton cartButton;
+    ImageButton ordersButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class MallActivity extends AppCompatActivity {
         searchButton = findViewById(R.id.ribbon_search);
         cartButton = findViewById(R.id.ribbon_cart);
         userMenuButton = findViewById(R.id.ribbon_user);
+        ordersButton = findViewById(R.id.ribbon_orders);
 
         userAuth = FirebaseAuth.getInstance();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MallActivity.this, 2);
@@ -131,6 +133,14 @@ public class MallActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showPopUpMenu(view);
+            }
+        });
+
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                startActivity(ordersIntent);
             }
         });
 

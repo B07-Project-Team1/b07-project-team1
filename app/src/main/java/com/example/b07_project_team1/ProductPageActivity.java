@@ -154,7 +154,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
 
                     //create order and write to db
                     HashMap<String, Integer> items = new HashMap<>();
-                    items.put(orderId, quantity);
+                    items.put(productId, quantity);
 
                     String formattedDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(LocalDateTime.now());
 
