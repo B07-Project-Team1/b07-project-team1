@@ -157,6 +157,7 @@ public class VendorAddProduct extends AppCompatActivity {
 
                 newProductReference.setValue(newProductInfo);
                 addProductToVendor(productId, uid);
+                finish();
             }
         });
     }
