@@ -108,17 +108,14 @@ class VendorOrderViewHolder extends RecyclerView.ViewHolder {
         orderValue = itemView.findViewById(R.id.vendor_order_value);
         recyclerView = itemView.findViewById(R.id.vendor_order_dropdown_list);
         expandOrderButton = itemView.findViewById(R.id.expand_order_button);
-        expandOrderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (recyclerView.getVisibility() == View.VISIBLE) {
-                    recyclerView.setVisibility(View.GONE);
-                    expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_up));
-                }
-                else {
-                    recyclerView.setVisibility(View.VISIBLE);
-                    expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_down));
-                }
+        expandOrderButton.setOnClickListener(view -> {
+            if (recyclerView.getVisibility() == View.VISIBLE) {
+                recyclerView.setVisibility(View.GONE);
+                expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_down));
+            }
+            else {
+                recyclerView.setVisibility(View.VISIBLE);
+                expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_up));
             }
         });
     }
