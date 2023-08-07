@@ -102,6 +102,14 @@ public class StoreActivity extends AppCompatActivity {
             }
         });
 
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                startActivity(ordersIntent);
+            }
+        });
+
         storeSearchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

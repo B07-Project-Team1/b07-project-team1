@@ -18,6 +18,10 @@ public class Order implements Serializable {
         this.formattedTimestamp = formattedTimestamp;
     }
 
+    public Order() {
+
+    }
+
     public String getCustomerId() {
         return customerId;
     }
