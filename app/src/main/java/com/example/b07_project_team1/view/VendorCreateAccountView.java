@@ -1,6 +1,5 @@
-package com.example.b07_project_team1;
+package com.example.b07_project_team1.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -11,33 +10,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.b07_project_team1.model.Vendor;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.b07_project_team1.R;
+import com.example.b07_project_team1.VendorSetup;
+import com.example.b07_project_team1.model.VendorCreateAccountModel;
+import com.example.b07_project_team1.presenter.VendorCreateAccountPresenter;
 
-public class VendorCreateAccount extends AppCompatActivity {
+
+public class VendorCreateAccountView extends AppCompatActivity {
     Button createAccountButton;
     TextView errorTextView;
     EditText emailField;
     EditText passwordField;
     EditText repeatPasswordField;
-
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase db;
+    VendorCreateAccountPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_create_account);
         errorTextView = (TextView) findViewById(R.id.vendor_create_account_activity_invalid_credentials_error);
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance("https://b07-projectdb-team1-default-rtdb.firebaseio.com/");
 
         createAccountButton = (Button) findViewById(R.id.create_account_button_vendor_create_account_activity);
         createAccountButton.setOnTouchListener(onTouchCreateAccount);
@@ -50,16 +43,12 @@ public class VendorCreateAccount extends AppCompatActivity {
 
         repeatPasswordField = (EditText) findViewById(R.id.vendor_create_account_activity_repeat_password_input_field);
         repeatPasswordField.setOnFocusChangeListener(onFocusChangeEditText);
+
+        presenter = new VendorCreateAccountPresenter(this, new VendorCreateAccountModel());
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // TODO
-        }
+    public void displayMessage(String text) {
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     public void onClickRegister(View view) {
@@ -67,37 +56,12 @@ public class VendorCreateAccount extends AppCompatActivity {
         String passwordText = ((EditText) findViewById(R.id.vendor_create_account_activity_password_input_field)).getText().toString();
         String repeatPasswordText = ((EditText) findViewById(R.id.vendor_create_account_activity_repeat_password_input_field)).getText().toString();
 
-        if (emailText.isEmpty() || passwordText.isEmpty()) {
-            errorTextView.setText(R.string.create_account_empty_fields_text);
-        }
+        presenter.createAccount(emailText, passwordText, repeatPasswordText);
+    }
 
-        else if (!passwordText.equals(repeatPasswordText)) {
-            errorTextView.setText(R.string.create_account_password_repeat_no_match_text);
-        }
-        else {
-            mAuth.createUserWithEmailAndPassword(emailText, passwordText)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Vendor newVendor = new Vendor(emailText);
-
-                                DatabaseReference ref = db.getReference();
-                                ref.child("vendors").child(user.getUid()).setValue(newVendor);
-                                Intent vendorSetupIntent = new Intent(getApplicationContext(), VendorSetup.class);
-                                startActivity(vendorSetupIntent);
-                            } else {
-                                String message = task.getException().getMessage();
-                                String longErr = "The email address is already in use by another account.";
-                                String longErr2 = "The given password is invalid. [ Password should be at least 6 characters ]";
-                                String err = message.equals(longErr) ? "Email address already in use." : message.equals(longErr2) ? "Password is too short." :  message;
-                                errorTextView.setText(err);
-                            }
-                        }
-                    });
-        }
+    public void launchVendorSetup() {
+        Intent vendorSetupIntent = new Intent(getApplicationContext(), VendorSetup.class);
+        startActivity(vendorSetupIntent);
     }
 
     private View.OnTouchListener onTouchCreateAccount = new View.OnTouchListener() {

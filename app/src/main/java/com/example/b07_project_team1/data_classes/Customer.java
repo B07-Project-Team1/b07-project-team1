@@ -1,4 +1,4 @@
-package com.example.b07_project_team1.model;
+package com.example.b07_project_team1.data_classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
