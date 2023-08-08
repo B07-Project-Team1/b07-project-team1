@@ -15,9 +15,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.b07_project_team1.model.Order;
-import com.example.b07_project_team1.model.Product;
 import com.google.android.material.button.MaterialButton;
+import com.example.b07_project_team1.data_classes.Order;
+import com.example.b07_project_team1.data_classes.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

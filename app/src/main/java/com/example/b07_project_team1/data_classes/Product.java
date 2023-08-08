@@ -1,9 +1,4 @@
-package com.example.b07_project_team1.model;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
+package com.example.b07_project_team1.data_classes;
 
 import java.io.Serializable;
 
