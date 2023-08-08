@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
 
         android:layout_height="match_parent"
-        android:paddingHorizontal="8dp"
+        android:paddingHorizontal="15dp"
         android:paddingVertical="12dp">
 
         <TextView
@@ -27,7 +27,7 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -37,12 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mundial"
+            android:paddingBottom="10dp"
             android:text="Items: 5"
             android:textColor="@color/dark_gray"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vendor_order_id"
             app:layout_constraintVertical_bias="0.0" />
@@ -57,16 +58,41 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vendor_order_quantity"
             app:layout_constraintVertical_bias="0.0" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/complete_order_button"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/pure_white"
+            android:fontFamily="@font/mundial_demibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:radius="100dp"
+            android:stateListAnimator="@null"
+            android:text="@string/mark_complete_button_fulfill"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_gray"
+            android:textSize="10sp"
+            app:flow_horizontalBias="1"
+            app:layout_constraintBottom_toBottomOf="@+id/vendor_order_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/vendor_order_id"
+            app:layout_constraintTop_toTopOf="@+id/vendor_order_id"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeColor="@color/dark_gray"
+            app:strokeWidth="1dp" />
+
         <Button
             android:id="@+id/expand_order_button"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:background="@drawable/chevron_up"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/chevron_down"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toTopOf="@+id/vendor_order_dropdown_list"
             app:layout_constraintEnd_toEndOf="parent"

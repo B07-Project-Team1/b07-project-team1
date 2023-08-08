@@ -86,7 +86,10 @@ public class VendorAddProduct extends AppCompatActivity {
                         uri = data.getData();
                         uploadImage.setImageURI(uri);
                     } else {
-                        errorTextView.setText(R.string.file_upload_error_string);
+                        Toast.makeText(
+                                VendorAddProduct.this,
+                                R.string.file_upload_error_string,
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -108,11 +111,17 @@ public class VendorAddProduct extends AppCompatActivity {
 
     private boolean inputFieldsCompleted(String productName, double price, String description, Uri imageUri) {
         if (productName.isEmpty() || description.isEmpty() || imageUri == null) {
-            errorTextView.setText(R.string.empty_field_error_string);
+            Toast.makeText(
+                    VendorAddProduct.this,
+                    R.string.empty_field_error_string,
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         if (price <= 0) {
-            errorTextView.setText(R.string.price_error_string);
+            Toast.makeText(
+                    VendorAddProduct.this,
+                    R.string.price_error_string,
+                    Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -148,6 +157,7 @@ public class VendorAddProduct extends AppCompatActivity {
 
                 newProductReference.setValue(newProductInfo);
                 addProductToVendor(productId, uid);
+                finish();
             }
         });
     }

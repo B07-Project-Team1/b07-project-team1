@@ -35,13 +35,13 @@ public class VendorOrders extends AppCompatActivity implements View.OnClickListe
     DatabaseReference ref2;
     ValueEventListener eventListener;
     Order order;
+    Button markCompleteButton;
     Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_orders);
-
         backButton = findViewById(R.id.order_back_button);
         backButton.setOnClickListener(this);
 
