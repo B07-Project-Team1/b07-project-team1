@@ -16,8 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.b07_project_team1.model.Order;
-import com.example.b07_project_team1.model.Product;
+import com.example.b07_project_team1.data_classes.Order;
+import com.example.b07_project_team1.data_classes.Product;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

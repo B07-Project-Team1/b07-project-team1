@@ -18,8 +18,8 @@ import java.util.List;
 import android.content.Context;
 
 import com.bumptech.glide.Glide;
-import com.example.b07_project_team1.model.Product;
-import com.example.b07_project_team1.model.Vendor;
+import com.example.b07_project_team1.data_classes.Product;
+import com.example.b07_project_team1.data_classes.Vendor;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder> {
 

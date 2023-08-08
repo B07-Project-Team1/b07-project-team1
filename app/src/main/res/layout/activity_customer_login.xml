@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pure_white"
-    tools:context=".CustomerLogin">
+    tools:context=".view.CustomerLoginView">
 
     <Button
         android:id="@+id/login_button_customer_login_activity"

@@ -3,12 +3,10 @@ package com.example.b07_project_team1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.text.TextWatcher;
-import com.example.b07_project_team1.R;
 
 import com.bumptech.glide.Glide;
 
@@ -28,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.b07_project_team1.model.Product;
-import com.example.b07_project_team1.model.Vendor;
+import com.example.b07_project_team1.data_classes.Product;
+import com.example.b07_project_team1.data_classes.Vendor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -86,6 +83,11 @@ public class StoreActivity extends AppCompatActivity {
         assert vendorId != null;
         createProductsGrid();
         getProductList(vendorId);
+
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         userMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
