@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +88,8 @@ public class MallActivity extends AppCompatActivity {
         // Search Function
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -110,7 +108,8 @@ public class MallActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {}
+            public void afterTextChanged(Editable editable) {
+            }
         });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +148,7 @@ public class MallActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataList.clear();
                 vendorIdList.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     Vendor dataClass = itemSnapshot.getValue(Vendor.class);
                     dataList.add(dataClass);
                     vendorIdList.add(itemSnapshot.getKey());

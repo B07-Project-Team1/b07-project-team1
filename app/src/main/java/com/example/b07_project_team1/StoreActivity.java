@@ -3,12 +3,10 @@ package com.example.b07_project_team1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.text.TextWatcher;
-import com.example.b07_project_team1.R;
 
 import com.bumptech.glide.Glide;
 
@@ -105,8 +102,13 @@ public class StoreActivity extends AppCompatActivity {
         ordersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
-                startActivity(ordersIntent);
+                if (isVendor) {
+                    Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                    startActivity(ordersIntent);
+                } else {
+                    Intent ordersIntent = new Intent(getApplicationContext(), CustomerOrders.class);
+                    startActivity(ordersIntent);
+                }
             }
         });
 
@@ -198,7 +200,7 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     private void showSoftKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputManager != null) {
             inputManager.showSoftInput(storeSearchBar, InputMethodManager.SHOW_IMPLICIT);
         }

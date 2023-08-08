@@ -4,14 +4,12 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,18 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b07_project_team1.model.Product;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.Objects;
 
@@ -44,6 +37,46 @@ public class VendorAddProduct extends AppCompatActivity {
     EditText descriptionField;
     ImageView uploadImage;
     Uri uri;
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        assert data != null;
+                        uri = data.getData();
+                        uploadImage.setImageURI(uri);
+                    } else {
+                        Toast.makeText(
+                                VendorAddProduct.this,
+                                R.string.file_upload_error_string,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
+    private final View.OnClickListener onClickUploadImage = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent photoPicker = new Intent(Intent.ACTION_PICK);
+            photoPicker.setType("image/*");
+            activityResultLauncher.launch(photoPicker);
+        }
+    };
+    private final View.OnClickListener onClickAddButton = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String product = productNameField.getText().toString();
+            double price = Double.parseDouble(priceField.getText().toString());
+            String description = descriptionField.getText().toString();
+
+            boolean fieldsCompleted = inputFieldsCompleted(product, price, description, uri);
+            if (!fieldsCompleted) return;
+
+            prepareWriteProductToDatabase(product, price, description, uri);
+        }
+    };
     TextView errorTextView;
 
     @Override
@@ -65,49 +98,6 @@ public class VendorAddProduct extends AppCompatActivity {
 
         errorTextView = (TextView) findViewById(R.id.vendor_add_product_activity_invalid_error);
     }
-
-    private final View.OnClickListener onClickUploadImage = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent photoPicker = new Intent(Intent.ACTION_PICK);
-            photoPicker.setType("image/*");
-            activityResultLauncher.launch(photoPicker);
-        }
-    };
-
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        assert data != null;
-                        uri = data.getData();
-                        uploadImage.setImageURI(uri);
-                    } else {
-                        Toast.makeText(
-                                VendorAddProduct.this,
-                                R.string.file_upload_error_string,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-    );
-
-    private final View.OnClickListener onClickAddButton = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String product = productNameField.getText().toString();
-            double price = Double.parseDouble(priceField.getText().toString());
-            String description = descriptionField.getText().toString();
-
-            boolean fieldsCompleted = inputFieldsCompleted(product, price, description, uri);
-            if (!fieldsCompleted) return;
-
-            prepareWriteProductToDatabase(product, price, description, uri);
-        }
-    };
 
     private boolean inputFieldsCompleted(String productName, double price, String description, Uri imageUri) {
         if (productName.isEmpty() || description.isEmpty() || imageUri == null) {
@@ -135,7 +125,7 @@ public class VendorAddProduct extends AppCompatActivity {
 
         storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-            while (!uriTask.isComplete());
+            while (!uriTask.isComplete()) ;
             String imageUrl = uriTask.getResult().toString();
             writeProductToDatabase(product, price, description, imageUrl);
         });

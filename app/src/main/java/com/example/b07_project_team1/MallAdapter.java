@@ -1,12 +1,10 @@
 package com.example.b07_project_team1;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.text.TextWatcher;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -72,7 +70,7 @@ public class MallAdapter extends RecyclerView.Adapter<StoreHolder> {
 }
 
 
-class StoreHolder extends RecyclerView.ViewHolder{
+class StoreHolder extends RecyclerView.ViewHolder {
     ImageView store_logo_mall;
     CardView recCard;
 
