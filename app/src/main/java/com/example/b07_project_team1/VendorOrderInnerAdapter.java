@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.b07_project_team1.model.Product;
+import com.example.b07_project_team1.data_classes.Product;
 
 import java.util.List;
 import java.util.Locale;

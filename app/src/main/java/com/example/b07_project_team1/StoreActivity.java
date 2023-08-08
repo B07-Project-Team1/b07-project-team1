@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.b07_project_team1.model.Product;
-import com.example.b07_project_team1.model.Vendor;
+import com.example.b07_project_team1.data_classes.Product;
+import com.example.b07_project_team1.data_classes.Vendor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -83,6 +83,11 @@ public class StoreActivity extends AppCompatActivity {
         assert vendorId != null;
         createProductsGrid();
         getProductList(vendorId);
+
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
 
         userMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
