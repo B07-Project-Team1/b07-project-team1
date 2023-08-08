@@ -24,6 +24,30 @@ public class CustomerLoginView extends AppCompatActivity {
 
     Button loginButton;
     CustomerLoginPresenter presenter;
+    private View.OnTouchListener onTouchLogin = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                loginButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
+                loginButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                loginButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
+                loginButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
+            }
+            return false;
+        }
+    };
+    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
+            } else {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +71,6 @@ public class CustomerLoginView extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
-
     public void onClickLogin(View view) {
         String emailText = ((EditText) findViewById(R.id.customer_login_activity_email_input_field)).getText().toString();
         String passwordText = ((EditText) findViewById(R.id.customer_login_activity_password_input_field)).getText().toString();
@@ -57,6 +80,7 @@ public class CustomerLoginView extends AppCompatActivity {
 
     public void launchMallView() {
         Intent mallIntent = new Intent(getApplicationContext(), MallActivity.class);
+        mallIntent.putExtra("IS_VENDOR", false);
         startActivity(mallIntent);
     }
 
@@ -64,33 +88,5 @@ public class CustomerLoginView extends AppCompatActivity {
         Intent customerCreateAccount = new Intent(this, CustomerCreateAccountView.class);
         startActivity(customerCreateAccount);
     }
-
-    private View.OnTouchListener onTouchLogin = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                loginButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
-                loginButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
-            }
-            else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                loginButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
-                loginButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
-            }
-            return false;
-        }
-    };
-
-    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
-
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-            if (hasFocus) {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
-            }
-            else {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
-            }
-        }
-    };
 
 }

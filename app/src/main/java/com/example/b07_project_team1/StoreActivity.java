@@ -107,13 +107,13 @@ public class StoreActivity extends AppCompatActivity {
         ordersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent ordersIntent;
                 if (isVendor) {
-                    Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
-                    startActivity(ordersIntent);
+                    ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
                 } else {
-                    Intent ordersIntent = new Intent(getApplicationContext(), CustomerOrders.class);
-                    startActivity(ordersIntent);
+                    ordersIntent = new Intent(getApplicationContext(), CustomerOrders.class);
                 }
+                startActivity(ordersIntent);
             }
         });
 
@@ -163,6 +163,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mallViewIntent = new Intent(getApplicationContext(), MallActivity.class);
+                mallViewIntent.putExtra("IS_VENDOR", isVendor); //vendor entry point to mall
                 startActivity(mallViewIntent);
             }
         });
