@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b07_project_team1.data_classes.Product;
 import com.google.android.gms.tasks.Task;
