@@ -1,12 +1,8 @@
-package com.example.b07_project_team1.model;
-
-import android.content.Intent;
+package com.example.b07_project_team1;
 
 import androidx.annotation.NonNull;
 
-import com.example.b07_project_team1.MallActivity;
 import com.example.b07_project_team1.data_classes.Customer;
-import com.example.b07_project_team1.presenter.CustomerCreateAccountPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

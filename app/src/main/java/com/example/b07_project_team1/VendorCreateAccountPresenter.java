@@ -1,7 +1,4 @@
-package com.example.b07_project_team1.presenter;
-
-import com.example.b07_project_team1.model.VendorCreateAccountModel;
-import com.example.b07_project_team1.view.VendorCreateAccountView;
+package com.example.b07_project_team1;
 
 public class VendorCreateAccountPresenter {
     VendorCreateAccountView view;

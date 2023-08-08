@@ -1,9 +1,8 @@
-package com.example.b07_project_team1.model;
+package com.example.b07_project_team1;
 
 import androidx.annotation.NonNull;
 
 import com.example.b07_project_team1.data_classes.Vendor;
-import com.example.b07_project_team1.presenter.VendorCreateAccountPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
