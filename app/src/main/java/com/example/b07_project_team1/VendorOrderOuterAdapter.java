@@ -98,7 +98,7 @@ public class VendorOrderOuterAdapter extends RecyclerView.Adapter<VendorOrderVie
 }
 
 class VendorOrderViewHolder extends RecyclerView.ViewHolder {
-    TextView orderIdTextView, orderQuantity, orderValue, markAsTextView;
+    TextView orderIdTextView, orderQuantity, orderValue;
     RecyclerView recyclerView;
     MaterialButton markCompleteButton;
 
@@ -113,7 +113,6 @@ class VendorOrderViewHolder extends RecyclerView.ViewHolder {
         orderQuantity = itemView.findViewById(R.id.vendor_order_quantity);
         orderValue = itemView.findViewById(R.id.vendor_order_value);
         recyclerView = itemView.findViewById(R.id.vendor_order_dropdown_list);
-        markAsTextView = itemView.findViewById(R.id.mark_as_textview);
         markCompleteButton = itemView.findViewById(R.id.complete_order_button);
         expandOrderButton = itemView.findViewById(R.id.expand_order_button);
 
@@ -149,8 +148,8 @@ class VendorOrderViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void setMarkCompleteButtonAsComplete() {
-        markAsTextView.setVisibility(View.GONE);
         markCompleteButton.setStrokeWidth(0);
+        markCompleteButton.setText(R.string.mark_complete_button_fulfilled);
         markCompleteButton.setBackgroundTintList(ColorStateList.valueOf(
                 ContextCompat.getColor(itemView.getContext(), R.color.lime_green)));
         markCompleteButton.setTextColor(
