@@ -28,10 +28,10 @@
             android:name=".VendorSetup"
             android:exported="false" />
         <activity
-            android:name=".view.CustomerCreateAccountView"
+            android:name=".CustomerCreateAccountView"
             android:exported="false" />
         <activity
-            android:name=".view.VendorCreateAccountView"
+            android:name=".VendorCreateAccountView"
             android:exported="false" />
         <activity
             android:name=".view.CustomerLoginView"
