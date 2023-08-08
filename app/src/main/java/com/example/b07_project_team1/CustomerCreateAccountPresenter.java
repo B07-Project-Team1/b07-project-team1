@@ -1,19 +1,4 @@
-package com.example.b07_project_team1.presenter;
-
-import android.content.Intent;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.example.b07_project_team1.MallActivity;
-import com.example.b07_project_team1.data_classes.Customer;
-import com.example.b07_project_team1.model.CustomerCreateAccountModel;
-import com.example.b07_project_team1.view.CustomerCreateAccountView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
+package com.example.b07_project_team1;
 
 public class CustomerCreateAccountPresenter {
     CustomerCreateAccountModel model;

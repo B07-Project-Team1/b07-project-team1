@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pure_white"
-    tools:context=".view.VendorCreateAccountView">
+    tools:context=".VendorCreateAccountView">
 
     <TextView
         android:id="@+id/vendor_create_account_activity_invalid_credentials_error"

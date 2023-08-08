@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.b07_project_team1.CustomerCreateAccountView;
 import com.example.b07_project_team1.MallActivity;
 import com.example.b07_project_team1.R;
 import com.example.b07_project_team1.model.CustomerLoginModel;
