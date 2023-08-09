@@ -86,12 +86,11 @@
             app:layout_constraintTop_toBottomOf="@+id/customer_orders_value" />
 
         <TextView
-            android:id="@+id/customer_orders_completed_text"
+            android:id="@+id/customer_orders_completion_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textAllCaps="false"
-            android:textColor="@color/lime_green"
             android:textSize="10sp"
             android:textStyle="bold"
             app:flow_horizontalBias="1"

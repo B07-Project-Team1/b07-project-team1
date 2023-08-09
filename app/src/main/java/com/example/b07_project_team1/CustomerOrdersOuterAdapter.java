@@ -1,6 +1,7 @@
 package com.example.b07_project_team1;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -73,7 +73,7 @@ public class CustomerOrdersOuterAdapter extends RecyclerView.Adapter<CustomerOrd
                 }
                 holder.setOrderId(orders.get(position).getValue());
                 holder.setOrder(orders.get(position).getKey());
-                holder.orderValue.setText(String.format(Locale.US, "Value: $%.2f", totalValue));
+                holder.orderValue.setText(String.format(Locale.US, "Price: $%.2f", totalValue));
                 holder.orderQuantity.setText(String.format(Locale.US, "Items: %d", quantity));
                 holder.dateText.setText(orders.get(position).getKey().getFormattedTimestamp());
                 CustomerOrdersInnerAdapter customerOrdersInnerAdapter = new CustomerOrdersInnerAdapter(context, products, productIDs, productAmounts);
@@ -96,7 +96,7 @@ public class CustomerOrdersOuterAdapter extends RecyclerView.Adapter<CustomerOrd
 }
 
 class CustomerOrdersViewHolder extends RecyclerView.ViewHolder {
-    TextView orderIdTextView, orderQuantity, orderValue, completedText, dateText;
+    TextView orderIdTextView, orderQuantity, orderValue, completionText, dateText;
     RecyclerView recyclerView;
 
     Button expandOrderButton;
@@ -110,7 +110,7 @@ class CustomerOrdersViewHolder extends RecyclerView.ViewHolder {
         orderQuantity = itemView.findViewById(R.id.customer_orders_quantity);
         orderValue = itemView.findViewById(R.id.customer_orders_value);
         recyclerView = itemView.findViewById(R.id.customer_orders_dropdown_list);
-        completedText = itemView.findViewById(R.id.customer_orders_completed_text);
+        completionText = itemView.findViewById(R.id.customer_orders_completion_text);
         expandOrderButton = itemView.findViewById(R.id.customer_orders_expand_order_button);
         dateText = itemView.findViewById(R.id.customer_orders_date);
 
@@ -134,7 +134,11 @@ class CustomerOrdersViewHolder extends RecyclerView.ViewHolder {
     public void setOrder(Order order) {
         this.order = order;
         if (order.isCompleted()) {
-            completedText.setText("Completed");
+            completionText.setText("Completed");
+            completionText.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.lime_green));
+        } else {
+            completionText.setText("Pending");
+            completionText.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.dark_gray));
         }
     }
 }
