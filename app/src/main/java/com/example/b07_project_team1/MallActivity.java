@@ -104,7 +104,7 @@ public class MallActivity extends AppCompatActivity {
                 for (int pos = 0; pos < dataList.size(); pos++) {
                     Vendor vendor = dataList.get(pos);
                     String vendorId = vendorIdList.get(pos);
-                    if (vendor.getBrandName().toLowerCase().contains(userInput)) {
+                    if (vendor.getBrandName() != null && vendor.getBrandName().toLowerCase().contains(userInput)) {
                         searchList.add(vendor);
                         searchIdList.add(vendorId);
                     }
