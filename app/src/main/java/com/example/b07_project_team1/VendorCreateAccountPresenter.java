@@ -10,7 +10,7 @@ public class VendorCreateAccountPresenter {
     }
 
     public void startNewActivity() {
-        view.launchVendorSetup();
+        view.launchPageFlow();
     }
 
     public void createAccount(String email, String password, String repeatPassword) {
