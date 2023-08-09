@@ -1,7 +1,7 @@
 package com.example.b07_project_team1;
 
 import android.content.Context;
-import android.graphics.Color;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
