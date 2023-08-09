@@ -103,9 +103,7 @@ public class VendorAddProduct extends AppCompatActivity {
         mallBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mallViewIntent = new Intent(getApplicationContext(), MallActivity.class);
-                mallViewIntent.putExtra("IS_VENDOR", true); //vendor entry point to mall
-                startActivity(mallViewIntent);
+                finish();
             }
         });
     }
