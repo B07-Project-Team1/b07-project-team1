@@ -85,6 +85,22 @@
                motion:motionTarget="@+id/Happy_shopping"
                motion:framePosition="100"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="0"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="50"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="88"
+               android:alpha="0.9" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
     </Transition>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mall_transition"
@@ -23,11 +22,11 @@
         android:id="@+id/Happy_shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Happy Shopping"
         android:fontFamily="@font/mundial_bold"
-        android:textSize="45dp"
-        android:textColor="@color/pure_black"
         android:gravity="center"
+        android:text="Happy Shopping"
+        android:textColor="@color/pure_black"
+        android:textSize="43dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
