@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2500"
+        motion:motionInterpolator="easeInOut">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="0"
+               android:scaleX="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="0"
+               android:scaleY="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="20"
+               android:scaleX="1.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="20"
+               android:scaleY="1.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="50"
+               android:scaleY="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="50"
+               android:scaleX="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="50"
+               android:translationY="0dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="0"
+               android:translationY="0dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="80"
+               android:translationY="-150dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="100"
+               android:translationY="-150dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/Happy_shopping"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="80"
+               android:scaleX="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="80"
+               android:scaleY="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="100"
+               android:scaleX="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="100"
+               android:scaleY="0.7" />
+           <KeyAttribute
+               motion:motionTarget="@+id/Happy_shopping"
+               motion:framePosition="68"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/Happy_shopping"
+               motion:framePosition="50"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/Happy_shopping"
+               motion:framePosition="88"
+               android:alpha="0.9" />
+           <KeyAttribute
+               motion:motionTarget="@+id/Happy_shopping"
+               motion:framePosition="100"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="0"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="50"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="88"
+               android:alpha="0.9" />
+           <KeyAttribute
+               motion:motionTarget="@+id/app_logo_animation"
+               motion:framePosition="100"
+               android:alpha="0" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/textView2"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/Happy_shopping"
+            motion:layout_constraintVertical_bias="0.55" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="182dp"
+            android:layout_height="185dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.497"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/app_logo_animation"
+            motion:layout_constraintVertical_bias="0.55" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+    </ConstraintSet>
+</MotionScene>

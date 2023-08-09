@@ -30,9 +30,9 @@ public class VendorLoginPresenter {
 
     public void setupNewActivity(String brandName, String logoUrl) {
         if (brandName == null || logoUrl == null) {
-            view.launchVendorSetup();
+            view.launchPageTransition(true, null, null);
         } else {
-            view.launchStoreActivity(logoUrl, model.getUID());
+            view.launchPageTransition(false, logoUrl, model.getUID());
         }
     }
 

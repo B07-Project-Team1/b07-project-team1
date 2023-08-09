@@ -208,7 +208,7 @@ public class LoginModuleTest {
             }
         }).when(customerModel).signIn(cp, customerEmail, customerPass);
         cp.signIn(customerEmail, customerPass);
-        verify(customerView).launchMallView();
+        verify(customerView).launchAnimationView();
     }
 
     /*
@@ -227,7 +227,7 @@ public class LoginModuleTest {
             }
         }).when(vendorModel).signIn(vp, vendorEmail, vendorPass);
         vp.signIn(vendorEmail, vendorPass);
-        verify(vendorView).launchVendorSetup();
+        verify(vendorView).launchPageTransition(true, null, null);
     }
 
     /*
@@ -251,7 +251,7 @@ public class LoginModuleTest {
             }
         }).when(vendorModel).signIn(vp, vendorEmail, vendorPass);
         vp.signIn(vendorEmail, vendorPass);
-        verify(vendorView).launchStoreActivity(logoUrl, "UID");
+        verify(vendorView).launchPageTransition(false, logoUrl, "UID");
     }
 
     /*
