@@ -75,6 +75,7 @@ public class CustomerOrdersOuterAdapter extends RecyclerView.Adapter<CustomerOrd
                 holder.setOrder(orders.get(position).getKey());
                 holder.orderValue.setText(String.format(Locale.US, "Value: $%.2f", totalValue));
                 holder.orderQuantity.setText(String.format(Locale.US, "Items: %d", quantity));
+                holder.dateText.setText(orders.get(position).getKey().getFormattedTimestamp());
                 CustomerOrdersInnerAdapter customerOrdersInnerAdapter = new CustomerOrdersInnerAdapter(context, products, productIDs, productAmounts);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1);
                 holder.recyclerView.setLayoutManager(gridLayoutManager);
@@ -95,7 +96,7 @@ public class CustomerOrdersOuterAdapter extends RecyclerView.Adapter<CustomerOrd
 }
 
 class CustomerOrdersViewHolder extends RecyclerView.ViewHolder {
-    TextView orderIdTextView, orderQuantity, orderValue, completedText;
+    TextView orderIdTextView, orderQuantity, orderValue, completedText, dateText;
     RecyclerView recyclerView;
 
     Button expandOrderButton;
@@ -111,6 +112,7 @@ class CustomerOrdersViewHolder extends RecyclerView.ViewHolder {
         recyclerView = itemView.findViewById(R.id.customer_orders_dropdown_list);
         completedText = itemView.findViewById(R.id.customer_orders_completed_text);
         expandOrderButton = itemView.findViewById(R.id.customer_orders_expand_order_button);
+        dateText = itemView.findViewById(R.id.customer_orders_date);
 
         expandOrderButton.setOnClickListener(this::toggleExpandOrderButton);
     }
