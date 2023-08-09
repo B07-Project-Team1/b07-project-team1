@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vendor_login_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pure_white"
+    app:layoutDescription="@xml/animation_login_to_mall_view_scene"
     tools:context=".view.VendorLoginView">
 
     <Button
@@ -17,6 +20,7 @@
         android:includeFontPadding="false"
         android:onClick="onClickLogin"
         android:text="@string/login_button_text"
+        android:visibility="visible"
         android:textAllCaps="false"
         android:textColor="@color/pure_white"
         android:textSize="24sp"
@@ -125,6 +129,7 @@
         android:includeFontPadding="false"
         android:onClick="onClickCreateAccount"
         android:text="@string/create_account_button_text_underlined"
+        android:visibility="visible"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -134,4 +139,15 @@
         app:layout_constraintTop_toBottomOf="@+id/vendor_login_activity_no_account_question_text"
         app:layout_constraintVertical_bias="0.100000024" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/include_vendor_login"
+        layout="@layout/animation_login_to_mall_view"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
