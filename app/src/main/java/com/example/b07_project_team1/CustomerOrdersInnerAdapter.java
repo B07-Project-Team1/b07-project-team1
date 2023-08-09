@@ -43,7 +43,7 @@ public class CustomerOrdersInnerAdapter extends RecyclerView.Adapter<InnerCustom
         Glide.with(context).load(products.get(position).getImageUrl()).into(holder.productImage);
         holder.productName.setText(product.getProductName());
         holder.unitQuantity.setText(String.format(Locale.US, "Unit Quantity: %d", productAmounts.get(position)));
-        holder.price.setText(String.format(Locale.US, "Unit Value: $%.2f", product.getPrice()));
+        holder.price.setText(String.format(Locale.US, "Unit Price: $%.2f", product.getPrice()));
     }
 
     @Override
