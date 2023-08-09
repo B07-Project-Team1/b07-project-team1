@@ -124,6 +124,7 @@ public class CustomerLoginView extends AppCompatActivity {
 
     public void launchMallView() {
         Intent mallViewIntent = new Intent(getApplicationContext(), MallActivity.class);
+        mallViewIntent.putExtra("IS_VENDOR", false);
         startActivity(mallViewIntent);
         finish();
     }

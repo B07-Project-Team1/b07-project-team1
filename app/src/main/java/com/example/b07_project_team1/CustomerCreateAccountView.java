@@ -25,6 +25,29 @@ public class CustomerCreateAccountView extends AppCompatActivity {
     CustomerCreateAccountPresenter presenter;
     MotionLayout motionLayout;
     MotionLayout cusCreatePage;
+    private View.OnTouchListener onTouchCreateAccount = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
+            }
+            return false;
+        }
+    };
+    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
+            } else {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,39 +115,12 @@ public class CustomerCreateAccountView extends AppCompatActivity {
         });
     }
 
-
     public void launchMallActivity() {
         // Transition the user to the mall page
         Intent mallIntent = new Intent(getApplicationContext(), MallActivity.class);
         mallIntent.putExtra("message", "Account created!");
+        mallIntent.putExtra("IS_VENDOR", false);
         startActivity(mallIntent);
         finish();
     }
-
-    private View.OnTouchListener onTouchCreateAccount = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
-                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
-            }
-            else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
-                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
-            }
-            return false;
-        }
-    };
-
-    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-            if (hasFocus) {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
-            }
-            else {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
-            }
-        }
-    };
 }

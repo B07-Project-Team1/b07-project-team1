@@ -31,7 +31,7 @@ import java.util.Objects;
 public class VendorAddProduct extends AppCompatActivity {
 
     DatabaseReference ref;
-    Button addButton;
+    Button addButton, mallBack;
     EditText productNameField;
     EditText priceField;
     EditText descriptionField;
@@ -90,6 +90,8 @@ public class VendorAddProduct extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.button_vendor_add_product_activity);
         addButton.setOnClickListener(onClickAddButton);
 
+        mallBack = findViewById(R.id.vendor_add_product_back_button);
+
         productNameField = (EditText) findViewById(R.id.vendor_add_product_product_name_input);
         priceField = (EditText) findViewById(R.id.vendor_add_product_price_input);
         descriptionField = (EditText) findViewById(R.id.vendor_add_product_description_input);
@@ -98,6 +100,14 @@ public class VendorAddProduct extends AppCompatActivity {
         uploadImage.setOnClickListener(onClickUploadImage);
 
         errorTextView = (TextView) findViewById(R.id.vendor_add_product_activity_invalid_error);
+        mallBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mallViewIntent = new Intent(getApplicationContext(), MallActivity.class);
+                mallViewIntent.putExtra("IS_VENDOR", true); //vendor entry point to mall
+                startActivity(mallViewIntent);
+            }
+        });
     }
 
     private boolean inputFieldsCompleted(String productName, double price, String description, Uri imageUri) {
@@ -157,4 +167,5 @@ public class VendorAddProduct extends AppCompatActivity {
         ref.child("vendors").child(vendorUid).child("products")
                 .child(newProductId).setValue(true);
     }
+
 }

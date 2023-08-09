@@ -73,6 +73,7 @@
         android:fontFamily="@font/mundial_light"
         android:gravity="start|center_vertical"
         android:hint="@string/vendor_add_product_price_input_hint"
+        android:importantForAutofill="no"
         android:inputType="number|numberDecimal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
@@ -84,8 +85,20 @@
         app:layout_constraintBottom_toTopOf="@+id/vendor_add_product_description_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/vendor_add_product_back_button"
+        android:layout_width="28dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/arrow_left_back"
+        app:layout_constraintBottom_toTopOf="@+id/product_image_upload_container"
+        app:layout_constraintEnd_toStartOf="@+id/logo_vendor_add_product_activity"
+        app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
     <EditText
         android:id="@+id/vendor_add_product_description_input"
