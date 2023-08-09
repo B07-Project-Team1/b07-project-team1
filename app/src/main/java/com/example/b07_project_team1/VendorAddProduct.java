@@ -75,6 +75,7 @@ public class VendorAddProduct extends AppCompatActivity {
             if (!fieldsCompleted) return;
 
             prepareWriteProductToDatabase(product, price, description, uri);
+            Toast.makeText(VendorAddProduct.this, "New Product Added!", Toast.LENGTH_SHORT).show();
         }
     };
     TextView errorTextView;

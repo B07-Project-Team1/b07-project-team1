@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer_create_account_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pure_white"
-    tools:context=".view.CustomerCreateAccountView">
+    app:layoutDescription="@xml/animation_login_to_mall_view_scene"
+    tools:context=".CustomerCreateAccountView">
 
     <TextView
         android:id="@+id/customer_create_account_activity_invalid_credentials_error"
@@ -18,7 +21,6 @@
         android:ellipsize="none"
         android:singleLine="false"
         android:maxLines="2"
-        android:text="@string/login_activity_invalid_credentials_error_text"
         android:textColor="@color/red"
         android:textSize="16sp"
         app:flow_wrapMode="none"
@@ -26,25 +28,6 @@
         app:layout_constraintEnd_toEndOf="@+id/customer_create_account_activity_repeat_password_input_field"
         app:layout_constraintStart_toStartOf="@+id/customer_create_account_activity_repeat_password_input_field"
         app:layout_constraintTop_toBottomOf="@+id/customer_create_account_activity_repeat_password_input_field" />
-
-    <Button
-        android:id="@+id/create_account_button_customer_create_account_activity"
-        android:layout_width="284dp"
-        android:layout_height="60dp"
-        android:background="@drawable/entry_button_background"
-        android:fontFamily="@font/mundial_demibold"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:onClick="onClickRegister"
-        android:text="@string/create_account_button_text"
-        android:textAllCaps="false"
-        android:textColor="@color/pure_white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blue_blob"
-        app:layout_constraintVertical_bias="0.85" />
 
     <ImageView
         android:id="@+id/blue_blob"
@@ -128,4 +111,36 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_create_account_activity_password_input_field" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/create_account_button_customer_create_account_activity"
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        android:background="@drawable/entry_button_background"
+        android:fontFamily="@font/mundial_demibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:onClick="onClickRegister"
+        android:text="@string/create_account_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/pure_white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blue_blob"
+        android:visibility="visible"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <include
+        android:id="@+id/include_customer_create"
+        layout="@layout/animation_login_to_mall_view"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

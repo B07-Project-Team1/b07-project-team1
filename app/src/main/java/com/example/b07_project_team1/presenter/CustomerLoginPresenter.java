@@ -22,7 +22,7 @@ public class CustomerLoginPresenter {
     }
 
     public void setupNewActivity() {
-        view.launchMallView();
+        view.launchAnimationView();
     }
 
     public void setMessage(String message) {

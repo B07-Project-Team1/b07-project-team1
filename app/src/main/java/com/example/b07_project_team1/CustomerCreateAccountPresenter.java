@@ -1,19 +1,12 @@
-package com.example.b07_project_team1.presenter;
+package com.example.b07_project_team1;
 
-import com.example.b07_project_team1.model.VendorCreateAccountModel;
-import com.example.b07_project_team1.view.VendorCreateAccountView;
+public class CustomerCreateAccountPresenter {
+    CustomerCreateAccountModel model;
+    CustomerCreateAccountView view;
 
-public class VendorCreateAccountPresenter {
-    VendorCreateAccountView view;
-    VendorCreateAccountModel model;
-
-    public VendorCreateAccountPresenter(VendorCreateAccountView view, VendorCreateAccountModel model) {
-        this.view = view;
+    public CustomerCreateAccountPresenter( CustomerCreateAccountView view, CustomerCreateAccountModel model) {
         this.model = model;
-    }
-
-    public void startNewActivity() {
-        view.launchVendorSetup();
+        this.view = view;
     }
 
     public void createAccount(String email, String password, String repeatPassword) {
@@ -29,11 +22,14 @@ public class VendorCreateAccountPresenter {
         }
     }
 
+    public void startNewActivity() {
+        view.launchMallActivityAfterAnimation();
+    }
+
     public void setText(String message) {
         String longErr = "The email address is already in use by another account.";
         String longErr2 = "The given password is invalid. [ Password should be at least 6 characters ]";
         String err = message.equals(longErr) ? "Email address already in use." : message.equals(longErr2) ? "Password is too short." :  message;
         view.displayMessage(err);
     }
-
 }

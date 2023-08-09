@@ -1,5 +1,6 @@
 package com.example.b07_project_team1.view;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.b07_project_team1.R;
 import com.example.b07_project_team1.StoreActivity;
+import com.example.b07_project_team1.VendorCreateAccountView;
 import com.example.b07_project_team1.VendorSetup;
 import com.example.b07_project_team1.model.VendorLoginModel;
 import com.example.b07_project_team1.presenter.VendorLoginPresenter;
@@ -23,7 +25,11 @@ public class VendorLoginView extends AppCompatActivity {
     EditText passwordField;
 
     Button loginButton;
+    Button createAccButton;
     VendorLoginPresenter presenter;
+
+    MotionLayout motionLayout;
+    MotionLayout venLoginPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,12 @@ public class VendorLoginView extends AppCompatActivity {
 
         loginButton = (Button) findViewById(R.id.login_button_vendor_login_activity);
         loginButton.setOnTouchListener(onTouchLogin);
+
+        motionLayout = findViewById(R.id.include_vendor_login);
+
+        venLoginPage = findViewById(R.id.vendor_login_page);
+
+        createAccButton = findViewById(R.id.create_account_button_vendor_login_activity);
 
         emailField = (EditText) findViewById(R.id.vendor_login_activity_email_input_field);
         emailField.setOnFocusChangeListener(onFocusChangeEditText);
@@ -56,9 +68,44 @@ public class VendorLoginView extends AppCompatActivity {
 
     }
 
+    public void launchPageTransition(boolean flag, String logoUrl, String userId) {
+        motionLayout.setVisibility(View.VISIBLE);
+        createAccButton.setVisibility(View.INVISIBLE);
+        loginButton.setVisibility(View.INVISIBLE);
+
+        motionLayout.transitionToEnd();
+        motionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                venLoginPage.setVisibility(View.INVISIBLE);
+                if (flag) {
+                    launchVendorSetup();
+                } else {
+                    launchStoreActivity(logoUrl, userId);
+                }
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+            }
+        });
+    }
+
     public void launchVendorSetup() {
         Intent vendorSetupIntent = new Intent(getApplicationContext(), VendorSetup.class);
         startActivity(vendorSetupIntent);
+        finish();
     }
 
     public void launchStoreActivity(String logoUrl, String uid) {
@@ -67,6 +114,7 @@ public class VendorLoginView extends AppCompatActivity {
         storeActivity.putExtra("VENDOR_STORE_LOGO", logoUrl);
         storeActivity.putExtra("VENDOR_ID", uid);
         startActivity(storeActivity);
+        finish();
     }
 
     public void onClickCreateAccount(View view) {
