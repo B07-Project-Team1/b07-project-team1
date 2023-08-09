@@ -23,7 +23,7 @@ public class CustomerCreateAccountPresenter {
     }
 
     public void startNewActivity() {
-        view.launchMallActivity();
+        view.launchMallActivityAfterAnimation();
     }
 
     public void setText(String message) {
