@@ -120,7 +120,8 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/Happy_shopping" />
+            android:id="@+id/Happy_shopping"
+            motion:layout_constraintVertical_bias="0.55" />
         <Constraint
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="182dp"
@@ -129,7 +130,8 @@
             motion:layout_constraintHorizontal_bias="0.497"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/app_logo_animation" />
+            android:id="@+id/app_logo_animation"
+            motion:layout_constraintVertical_bias="0.55" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
