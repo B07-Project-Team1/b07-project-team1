@@ -31,22 +31,24 @@ import java.util.Locale;
 import java.util.Map;
 
 public class VendorOrderOuterAdapter extends RecyclerView.Adapter<VendorOrderViewHolder> {
-    private Context context;
-    private List<Order> orders;
-    private List<String> orderIDs;
     Product p;
     double totalValue = 0;
     int quantity = 0;
+    private Context context;
+    private List<Order> orders;
+    private List<String> orderIDs;
 
     public VendorOrderOuterAdapter(Context context, List<Order> orders, List<String> orderIDs) {
         this.context = context;
         this.orders = orders;
         this.orderIDs = orderIDs;
+        Log.d("cust", "const vnd: " + Integer.toString(this.getItemCount()));
     }
 
     @NonNull
     @Override
     public VendorOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("cust", "oncreate vnd: " + Integer.toString(this.getItemCount()));
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_vendor_order, parent, false);
         return new VendorOrderViewHolder(view);
     }
@@ -164,8 +166,7 @@ class VendorOrderViewHolder extends RecyclerView.ViewHolder {
         if (recyclerView.getVisibility() == View.VISIBLE) {
             recyclerView.setVisibility(View.GONE);
             expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_down));
-        }
-        else {
+        } else {
             recyclerView.setVisibility(View.VISIBLE);
             expandOrderButton.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.chevron_up));
         }

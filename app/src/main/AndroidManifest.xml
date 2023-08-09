@@ -22,6 +22,9 @@
             android:name=".ProductPageActivity"
             android:exported="false" />
         <activity
+            android:name=".CustomerOrders"
+            android:exported="false" />
+        <activity
             android:name=".VendorAddProduct"
             android:exported="false" />
         <activity

@@ -83,7 +83,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         ref = FirebaseDatabase.getInstance().getReference();
         loadVendorInfo();
 
-        backButton = findViewById(R.id.product_page_back_button);
+        backButton = findViewById(R.id.vendor_add_product_back_button);
         backButton.setOnClickListener(this);
         countButtonM = findViewById(R.id.product_page_minus_button);
         countButtonM.setOnClickListener(this);
@@ -98,7 +98,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.product_page_back_button) {
+        if (v.getId() == R.id.vendor_add_product_back_button) {
             this.finish();
         } else if (v.getId() == R.id.product_page_minus_button) {
             if (count - 1 >= 1) {
@@ -132,7 +132,6 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
                 Log.i("product page", "Couldn't load data");
             }
         });
-
 
 
     }

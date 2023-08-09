@@ -70,7 +70,7 @@ public class MallAdapter extends RecyclerView.Adapter<StoreHolder> {
 }
 
 
-class StoreHolder extends RecyclerView.ViewHolder{
+class StoreHolder extends RecyclerView.ViewHolder {
     ImageView store_logo_mall;
     CardView recCard;
 

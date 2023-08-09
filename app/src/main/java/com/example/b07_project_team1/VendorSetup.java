@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +36,62 @@ public class VendorSetup extends AppCompatActivity {
     String imageUrl;
     Uri uri;
     private FirebaseDatabase db;
+    private View.OnTouchListener onTouchLogin = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
+                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
+                if (uri == null || brandNameField.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "You have empty fields.", Toast.LENGTH_SHORT).show();
+//                    errorTextView.setText(R.string.empty_field_error_string);
+                    return false;
+                }
+
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
+                storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while (!uriTask.isComplete()) ;
+                        Uri urlImage = uriTask.getResult();
+                        imageUrl = urlImage.toString();
+
+                        String brandName = brandNameField.getText().toString();
+
+                        DatabaseReference ref = db.getReference();
+                        String uid = FirebaseAuth.getInstance().getUid();
+
+                        ref.child("vendors").child(uid).child("brandName").setValue(brandName);
+                        ref.child("vendors").child(uid).child("logoUrl").setValue(imageUrl);
+
+                        Intent storeIntent = new Intent(VendorSetup.this, StoreActivity.class);
+                        storeIntent.putExtra("IS_VENDOR", true);
+                        storeIntent.putExtra("VENDOR_STORE_LOGO", (String) imageUrl);
+                        storeIntent.putExtra("VENDOR_ID", (String) FirebaseAuth.getInstance().getUid());
+                        storeIntent.putExtra("message", "Account created!");
+                        startActivity(storeIntent);
+                        finish();
+                    }
+                });
+            }
+            return false;
+        }
+    };
+    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
+            } else {
+                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,65 +138,5 @@ public class VendorSetup extends AppCompatActivity {
         });
 
     }
-
-    private View.OnTouchListener onTouchLogin = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.medium_gray));
-                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background_onpress));
-            }
-            else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                createAccountButton.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.pure_white));
-                createAccountButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.entry_button_background));
-                if (uri == null || brandNameField.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "You have empty fields.", Toast.LENGTH_SHORT).show();
-//                    errorTextView.setText(R.string.empty_field_error_string);
-                    return false;
-                }
-
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
-                storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while(!uriTask.isComplete());
-                        Uri urlImage = uriTask.getResult();
-                        imageUrl = urlImage.toString();
-
-                        String brandName = brandNameField.getText().toString();
-
-                        DatabaseReference ref = db.getReference();
-                        String uid = FirebaseAuth.getInstance().getUid();
-
-                        ref.child("vendors").child(uid).child("brandName").setValue(brandName);
-                        ref.child("vendors").child(uid).child("logoUrl").setValue(imageUrl);
-
-                        Intent storeIntent = new Intent(VendorSetup.this, StoreActivity.class);
-                        storeIntent.putExtra("IS_VENDOR", true);
-                        storeIntent.putExtra("VENDOR_STORE_LOGO", (String) imageUrl);
-                        storeIntent.putExtra("VENDOR_ID", (String) FirebaseAuth.getInstance().getUid());
-                        storeIntent.putExtra("message", "Account created!");
-                        startActivity(storeIntent);
-                        finish();
-                    }
-                });
-            }
-            return false;
-        }
-    };
-
-    private View.OnFocusChangeListener onFocusChangeEditText = new View.OnFocusChangeListener() {
-
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-            if (hasFocus) {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background_active));
-            }
-            else {
-                view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.login_info_entry_box_background));
-            }
-        }
-    };
 
 }

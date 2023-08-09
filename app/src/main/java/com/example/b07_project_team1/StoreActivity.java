@@ -107,7 +107,12 @@ public class StoreActivity extends AppCompatActivity {
         ordersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                Intent ordersIntent;
+                if (isVendor) {
+                    ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                } else {
+                    ordersIntent = new Intent(getApplicationContext(), CustomerOrders.class);
+                }
                 startActivity(ordersIntent);
             }
         });
@@ -158,6 +163,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent mallViewIntent = new Intent(getApplicationContext(), MallActivity.class);
+                mallViewIntent.putExtra("IS_VENDOR", isVendor); //vendor entry point to mall
                 startActivity(mallViewIntent);
             }
         });
@@ -200,7 +206,7 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     private void showSoftKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager)  getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputManager != null) {
             inputManager.showSoftInput(storeSearchBar, InputMethodManager.SHOW_IMPLICIT);
         }

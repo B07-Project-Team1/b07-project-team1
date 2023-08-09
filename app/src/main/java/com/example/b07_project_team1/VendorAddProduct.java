@@ -31,43 +31,12 @@ import java.util.Objects;
 public class VendorAddProduct extends AppCompatActivity {
 
     DatabaseReference ref;
-    Button addButton;
+    Button addButton, mallBack;
     EditText productNameField;
     EditText priceField;
     EditText descriptionField;
     ImageView uploadImage;
     Uri uri;
-    TextView errorTextView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vendor_add_product);
-
-        ref = FirebaseDatabase.getInstance().getReference();
-
-        addButton = (Button) findViewById(R.id.button_vendor_add_product_activity);
-        addButton.setOnClickListener(onClickAddButton);
-
-        productNameField = (EditText) findViewById(R.id.vendor_add_product_product_name_input);
-        priceField = (EditText) findViewById(R.id.vendor_add_product_price_input);
-        descriptionField = (EditText) findViewById(R.id.vendor_add_product_description_input);
-
-        uploadImage = (ImageView) findViewById(R.id.product_image_upload_container);
-        uploadImage.setOnClickListener(onClickUploadImage);
-
-        errorTextView = (TextView) findViewById(R.id.vendor_add_product_activity_invalid_error);
-    }
-
-    private final View.OnClickListener onClickUploadImage = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent photoPicker = new Intent(Intent.ACTION_PICK);
-            photoPicker.setType("image/*");
-            activityResultLauncher.launch(photoPicker);
-        }
-    };
-
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -87,7 +56,14 @@ public class VendorAddProduct extends AppCompatActivity {
                 }
             }
     );
-
+    private final View.OnClickListener onClickUploadImage = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent photoPicker = new Intent(Intent.ACTION_PICK);
+            photoPicker.setType("image/*");
+            activityResultLauncher.launch(photoPicker);
+        }
+    };
     private final View.OnClickListener onClickAddButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -102,6 +78,35 @@ public class VendorAddProduct extends AppCompatActivity {
             Toast.makeText(VendorAddProduct.this, "New Product Added!", Toast.LENGTH_SHORT).show();
         }
     };
+    TextView errorTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vendor_add_product);
+
+        ref = FirebaseDatabase.getInstance().getReference();
+
+        addButton = (Button) findViewById(R.id.button_vendor_add_product_activity);
+        addButton.setOnClickListener(onClickAddButton);
+
+        mallBack = findViewById(R.id.vendor_add_product_back_button);
+
+        productNameField = (EditText) findViewById(R.id.vendor_add_product_product_name_input);
+        priceField = (EditText) findViewById(R.id.vendor_add_product_price_input);
+        descriptionField = (EditText) findViewById(R.id.vendor_add_product_description_input);
+
+        uploadImage = (ImageView) findViewById(R.id.product_image_upload_container);
+        uploadImage.setOnClickListener(onClickUploadImage);
+
+        errorTextView = (TextView) findViewById(R.id.vendor_add_product_activity_invalid_error);
+        mallBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 
     private boolean inputFieldsCompleted(String productName, double price, String description, Uri imageUri) {
         if (productName.isEmpty() || description.isEmpty() || imageUri == null) {
@@ -129,7 +134,7 @@ public class VendorAddProduct extends AppCompatActivity {
 
         storageReference.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-            while (!uriTask.isComplete());
+            while (!uriTask.isComplete()) ;
             String imageUrl = uriTask.getResult().toString();
             writeProductToDatabase(product, price, description, imageUrl);
         });
@@ -160,4 +165,5 @@ public class VendorAddProduct extends AppCompatActivity {
         ref.child("vendors").child(vendorUid).child("products")
                 .child(newProductId).setValue(true);
     }
+
 }

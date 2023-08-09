@@ -1,6 +1,11 @@
 package com.example.b07_project_team1.data_classes;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.Temporal;
 import java.util.HashMap;
 
 public class Order implements Serializable {
@@ -45,6 +50,7 @@ public class Order implements Serializable {
     public void setItems(HashMap<String, Integer> items) {
         this.items = items;
     }
+
     public void addItem(String key, int value) {
         items.put(key, items.containsKey(key) && items.get(key) != null ? items.get(key) + value : value);
     }
@@ -57,5 +63,7 @@ public class Order implements Serializable {
         isCompleted = completed;
     }
 
-    public String getFormattedTimestamp() { return formattedTimestamp; }
+    public String getFormattedTimestamp() {
+        return formattedTimestamp;
+    }
 }

@@ -47,11 +47,16 @@ public class MallActivity extends AppCompatActivity {
     ImageButton searchButton;
     ImageButton cartButton;
     ImageButton ordersButton;
+    boolean isVendor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mall_view);
+
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        isVendor = bundle.getBoolean("IS_VENDOR");
 
         recyclerView = findViewById(R.id.recyclerView);
         searchBar = findViewById(R.id.search_bar_mall);
@@ -88,7 +93,8 @@ public class MallActivity extends AppCompatActivity {
         // Search Function
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -107,7 +113,8 @@ public class MallActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {}
+            public void afterTextChanged(Editable editable) {
+            }
         });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -121,8 +128,13 @@ public class MallActivity extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutOrder.class);
-                startActivity(checkoutIntent);
+                if (isVendor) {
+                    Intent addProductIntent = new Intent(getApplicationContext(), VendorAddProduct.class);
+                    startActivity(addProductIntent);
+                } else {
+                    Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutOrder.class);
+                    startActivity(checkoutIntent);
+                }
             }
         });
 
@@ -136,7 +148,12 @@ public class MallActivity extends AppCompatActivity {
         ordersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                Intent ordersIntent;
+                if (isVendor) {
+                    ordersIntent = new Intent(getApplicationContext(), VendorOrders.class);
+                } else {
+                    ordersIntent = new Intent(getApplicationContext(), CustomerOrders.class);
+                }
                 startActivity(ordersIntent);
             }
         });
@@ -146,7 +163,7 @@ public class MallActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataList.clear();
                 vendorIdList.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     Vendor dataClass = itemSnapshot.getValue(Vendor.class);
                     dataList.add(dataClass);
                     vendorIdList.add(itemSnapshot.getKey());
