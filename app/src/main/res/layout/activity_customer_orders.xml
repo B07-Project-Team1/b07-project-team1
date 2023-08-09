@@ -15,19 +15,19 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/order_back_button"
+            android:id="@+id/customer_orders_back_button"
             android:layout_width="28dp"
             android:layout_height="26dp"
             android:background="@drawable/arrow_left_back"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cart_header"
+            app:layout_constraintEnd_toStartOf="@+id/customer_orders_cart_header"
             app:layout_constraintHorizontal_bias="0.16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.56" />
 
         <TextView
-            android:id="@+id/cart_header"
+            android:id="@+id/customer_orders_cart_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mundial_demibold"

@@ -41,7 +41,7 @@ public class VendorOrders extends AppCompatActivity implements View.OnClickListe
         backButton = findViewById(R.id.order_back_button);
         backButton.setOnClickListener(this);
 
-        recyclerView = findViewById(R.id.recycler_vendor_orders);
+        recyclerView = findViewById(R.id.recycler_customer_orders);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(VendorOrders.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
