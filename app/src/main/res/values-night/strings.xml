@@ -14,25 +14,19 @@
     <string name="repeat_password_entry_box_text">Repeat Password:</string>
     <string name="create_account_button_text">Create Account</string>
     <string name="vendor_create_account_button_text">Next</string>
-    <string name="create_account_empty_fields_text">You have empty fields.</string>
-    <string name="create_account_password_repeat_no_match_text">Passwords do not match.</string>
     <string name="vendor_setup_upload_brand_logo_text">Upload Brand Logo</string>
     <string name="vendor_setup_brand_field_text">Brand Name:</string>
-    <string name="brand_logo_image_description">Your Logo</string>
-    <string name="vendor_add_product_text">Add Product Info</string>
     <string name="vendor_add_product_price_input_hint">Price:</string>
     <string name="vendor_add_product_description_input_hint">Description:</string>
     <string name="vendor_add_product_button_text">Add Product</string>
     <string name="vendor_add_product_name_input_hint">Product Name:</string>
     <string name="vendor_product_image_upload_text">Product Image Upload</string>
-    <string name="title_activity_vendor_add_product">VendorAddProduct</string>
     <string name="file_upload_error_string">Error in uploading file.</string>
     <string name="empty_field_error_string">You have empty fields.</string>
     <string name="price_error_string">Price must be positive.</string>
     <string name="product_page_image_cd">Product Image</string>
     <string name="product_page_store_logo_inner_cd">Store Logo</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mark_complete_button_fulfilled">Fulfilled</string>
     <string name="mark_complete_button_fulfill">Fulfill</string>
 </resources>
