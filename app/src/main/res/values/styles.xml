@@ -6,10 +6,4 @@
         <item name="color">@color/pure_white</item>
     </style>
 
-    <style name="WindowAnimationStyle">
-        <item name="android:windowEnterAnimation">
-            @android:anim/linear_interpolator
-        </item>
-    </style>
-
 </resources>
