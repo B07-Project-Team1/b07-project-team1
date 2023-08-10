@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 
 import com.bumptech.glide.Glide;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -83,6 +84,11 @@ public class StoreActivity extends AppCompatActivity {
         assert vendorId != null;
         createProductsGrid();
         getProductList(vendorId);
+
+        if (isVendor) {
+            cartButton.setImageResource(R.drawable.selection_plus);
+            mallBack.setVisibility(View.GONE);
+        }
 
         String message = getIntent().getStringExtra("message");
         if (message != null) {
@@ -251,7 +257,7 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     void createProductsGrid() {
-        adapter = new StoreAdapter(StoreActivity.this, productIdList, productDataList);
+        adapter = new StoreAdapter(StoreActivity.this, productIdList, productDataList, isVendor);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(
                 this, 2, GridLayoutManager.VERTICAL, false);
         adapter.setVendor(vendor);

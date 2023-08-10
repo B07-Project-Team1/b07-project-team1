@@ -49,6 +49,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
     Button cartButton;
     Button buyButton;
     DatabaseReference ref;
+    boolean isVendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
+        isVendor = bundle.getBoolean("IS_VENDOR");
 
         productImageUrl = bundle.getString("PRODUCT_IMAGE");
         product = bundle.getSerializable("PRODUCT_INFO", Product.class);
@@ -93,6 +95,14 @@ public class ProductPageActivity extends AppCompatActivity implements View.OnCli
         cartButton.setOnClickListener(this);
         buyButton = findViewById((R.id.product_page_buy_button));
         buyButton.setOnClickListener(this);
+
+        if (isVendor) {
+            buyButton.setVisibility(View.GONE);
+            cartButton.setVisibility(View.GONE);
+            countButtonM.setVisibility(View.GONE);
+            countButtonP.setVisibility(View.GONE);
+            productQuantity.setVisibility(View.GONE);
+        }
 
     }
 

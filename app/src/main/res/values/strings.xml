@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">b07-project-team1</string>
+    <string name="app_name">JC Mall</string>
     <string name="shopper_button_text">I\'m a Shopper</string>
     <string name="vendor_button_text">I\'m a Vendor</string>
     <string name="logo_content_description">Javan Codewell Shopping Center Logo</string>
     <string name="login_button_text">Login</string>
     <string name="email_entry_box_text">Email:</string>
     <string name="password_entry_box_text">Password:</string>
-    <string name="login_activity_invalid_credentials_error_text"></string>
-    <string name="setup_activity_invalid_error_text"></string>
+    <string name="login_activity_invalid_credentials_error_text" />
+    <string name="setup_activity_invalid_error_text" />
     <string name="no_account_question_text">Don\'t have an account?</string>
     <string name="create_account_button_text_underlined"><u>Create Account</u></string>
     <string name="repeat_password_entry_box_text">Repeat Password:</string>

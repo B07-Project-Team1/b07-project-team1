@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">b07-project-team1</string>
+    <string name="app_name">JC Mall</string>
     <string name="shopper_button_text">I\'m a Shopper</string>
     <string name="vendor_button_text">I\'m a Vendor</string>
     <string name="logo_content_description">Javan Codewell Shopping Center Logo</string>
     <string name="login_button_text">Login</string>
     <string name="email_entry_box_text">Email:</string>
     <string name="password_entry_box_text">Password:</string>
+    <string name="login_activity_invalid_credentials_error_text" />
+    <string name="setup_activity_invalid_error_text" />
     <string name="no_account_question_text">Don\'t have an account?</string>
     <string name="create_account_button_text_underlined"><u>Create Account</u></string>
     <string name="repeat_password_entry_box_text">Repeat Password:</string>
     <string name="create_account_button_text">Create Account</string>
+    <string name="vendor_create_account_button_text">Next</string>
+    <string name="create_account_empty_fields_text">You have empty fields.</string>
+    <string name="create_account_password_repeat_no_match_text">Passwords do not match.</string>
+    <string name="vendor_setup_upload_brand_logo_text">Upload Brand Logo</string>
+    <string name="vendor_setup_brand_field_text">Brand Name:</string>
+    <string name="brand_logo_image_description">Your Logo</string>
+    <string name="vendor_add_product_text">Add Product Info</string>
+    <string name="vendor_add_product_price_input_hint">Price:</string>
+    <string name="vendor_add_product_description_input_hint">Description:</string>
+    <string name="vendor_add_product_button_text">Add Product</string>
+    <string name="vendor_add_product_name_input_hint">Product Name:</string>
+    <string name="vendor_product_image_upload_text">Product Image Upload</string>
+    <string name="title_activity_vendor_add_product">VendorAddProduct</string>
+    <string name="file_upload_error_string">Error in uploading file.</string>
+    <string name="empty_field_error_string">You have empty fields.</string>
+    <string name="price_error_string">Price must be positive.</string>
+    <string name="product_page_image_cd">Product Image</string>
+    <string name="product_page_store_logo_inner_cd">Store Logo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mark_complete_button_fulfilled">Fulfilled</string>
+    <string name="mark_complete_button_fulfill">Fulfill</string>
 </resources>

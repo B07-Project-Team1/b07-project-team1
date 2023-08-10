@@ -27,12 +27,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder> {
     private List<String> productIdList;
     private List<Product> dataList;
     Vendor vendor;
+    Boolean isVendor;
 
 
-    public StoreAdapter(Context context, List<String> productIdList, List<Product> dataList) {
+    public StoreAdapter(Context context, List<String> productIdList, List<Product> dataList, Boolean isVendor) {
         this.context = context;
         this.productIdList = productIdList;
         this.dataList = dataList;
+        this.isVendor = isVendor;
     }
 
     @NonNull
@@ -54,6 +56,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder> {
                 productPageIntent.putExtra("PRODUCT_IMAGE", dataList.get(position).getImageUrl());
                 productPageIntent.putExtra("PRODUCT_INFO", dataList.get(position));
                 productPageIntent.putExtra("VENDOR_INFO", vendor);
+                productPageIntent.putExtra("IS_VENDOR", isVendor);
                 productPageIntent.putExtra("PRODUCT_ID", productIdList.get(position));
                 context.startActivity(productPageIntent);
             }

@@ -22,8 +22,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendor_setup_activity_invalid_error"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintTop_toBottomOf="@+id/brand_logo_upload_container"
+        app:layout_constraintVertical_bias="0.6" />
 
     <ImageView
         android:id="@+id/logo_vendor_setup_activity"
@@ -39,6 +39,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
+        android:textCursorDrawable="@color/dark_gray"
         android:id="@+id/vendor_setup_activity_brand_name_input_field"
         android:layout_width="284dp"
         android:layout_height="60dp"
@@ -55,17 +56,17 @@
         android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_blue"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_vendor_setup_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/logo_vendor_setup_activity"
-        app:layout_constraintVertical_bias="0.72" />
+        app:layout_constraintTop_toBottomOf="@+id/brand_logo_upload_container" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mundial_light"
         android:text="@string/vendor_setup_upload_brand_logo_text"
         android:textAlignment="center"
         android:textColor="@color/dark_gray"
@@ -76,21 +77,6 @@
         app:layout_constraintTop_toBottomOf="@+id/logo_vendor_setup_activity"
         app:layout_constraintVertical_bias="0.75" />
 
-    <TextView
-        android:id="@+id/vendor_setup_activity_invalid_error"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:ems="10"
-        android:fontFamily="@font/mundial_regular"
-        android:gravity="center"
-        android:inputType="text"
-        android:text="@string/setup_activity_invalid_error_text"
-        android:textColor="@color/red"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendor_setup_activity_brand_name_input_field" />
-
 
     <ImageView
         android:id="@+id/brand_logo_upload_container"
@@ -99,11 +85,11 @@
         android:background="@drawable/login_info_entry_box_background"
         android:paddingTop="80dp"
         android:paddingBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/vendor_setup_activity_brand_name_input_field"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/vendor_setup_activity_brand_name_input_field"
         app:layout_constraintStart_toStartOf="@+id/vendor_setup_activity_brand_name_input_field"
         app:layout_constraintTop_toBottomOf="@+id/logo_vendor_setup_activity"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.23000002"
         app:srcCompat="@drawable/uploadphoto" />
 
 

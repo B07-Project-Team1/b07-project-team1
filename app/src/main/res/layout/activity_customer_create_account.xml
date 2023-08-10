@@ -43,6 +43,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
+        android:textCursorDrawable="@color/dark_gray"
         android:id="@+id/customer_create_account_activity_email_input_field"
         android:layout_width="284dp"
         android:layout_height="60dp"
@@ -67,6 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/blue_blob" />
 
     <EditText
+        android:textCursorDrawable="@color/dark_gray"
         android:id="@+id/customer_create_account_activity_password_input_field"
         android:layout_width="284dp"
         android:layout_height="60dp"
@@ -90,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/blue_blob" />
 
     <EditText
+        android:textCursorDrawable="@color/dark_gray"
         android:id="@+id/customer_create_account_activity_repeat_password_input_field"
         android:layout_width="284dp"
         android:layout_height="60dp"
