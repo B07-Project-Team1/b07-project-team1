@@ -6,13 +6,7 @@
     <color name="dark_gray">#ABABAB</color>
     <color name="medium_gray">#E1E1E1</color>
     <color name="light_gray">#EFEFEF</color>
-    <color name="blue_hyper_dark">#172A45</color>
     <color name="dark_blue">#1D3557</color>
-    <color name="medium_blue">#457B9D</color>
-    <color name="light_blue">#A8DADC</color>
-    <color name="dark_red">#C81927</color>
     <color name="red">#E63946</color>
     <color name="lime_green">#19D47A</color>
-    <color name="logout_icon_color">#FF0000</color>
-    <color name="logout_text_color">#000000</color>
 </resources>

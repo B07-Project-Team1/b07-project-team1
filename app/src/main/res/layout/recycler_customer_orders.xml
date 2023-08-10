@@ -106,7 +106,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mundial_regular"
-            android:text="asdjhasda"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/customer_orders_dropdown_list"
             app:layout_constraintEnd_toEndOf="parent"
