@@ -89,8 +89,7 @@ public class CustomerLoginView extends AppCompatActivity {
     public void onClickLogin(View view) {
         String emailText = ((EditText) findViewById(R.id.customer_login_activity_email_input_field)).getText().toString();
         String passwordText = ((EditText) findViewById(R.id.customer_login_activity_password_input_field)).getText().toString();
-        View v = getCurrentFocus();
-        if (v != null) {
+        if (view != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
