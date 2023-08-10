@@ -257,7 +257,7 @@ public class StoreActivity extends AppCompatActivity {
     }
 
     void createProductsGrid() {
-        adapter = new StoreAdapter(StoreActivity.this, productIdList, productDataList);
+        adapter = new StoreAdapter(StoreActivity.this, productIdList, productDataList, isVendor);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(
                 this, 2, GridLayoutManager.VERTICAL, false);
         adapter.setVendor(vendor);
