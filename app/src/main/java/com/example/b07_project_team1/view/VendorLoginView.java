@@ -3,10 +3,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -64,6 +66,11 @@ public class VendorLoginView extends AppCompatActivity {
         String emailText = ((EditText) findViewById(R.id.vendor_login_activity_email_input_field)).getText().toString();
         String passwordText = ((EditText) findViewById(R.id.vendor_login_activity_password_input_field)).getText().toString();
 
+        View v = getCurrentFocus();
+        if (v != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         presenter.signIn(emailText, passwordText);
 
     }
@@ -77,7 +84,11 @@ public class VendorLoginView extends AppCompatActivity {
         motionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
             @Override
             public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
-
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
             }
 
             @Override
