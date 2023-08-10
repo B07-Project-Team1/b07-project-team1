@@ -61,7 +61,10 @@ public class VendorCreateAccountView extends AppCompatActivity {
         String emailText = ((EditText) findViewById(R.id.vendor_create_account_activity_email_input_field)).getText().toString();
         String passwordText = ((EditText) findViewById(R.id.vendor_create_account_activity_password_input_field)).getText().toString();
         String repeatPasswordText = ((EditText) findViewById(R.id.vendor_create_account_activity_repeat_password_input_field)).getText().toString();
-
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         presenter.createAccount(emailText, passwordText, repeatPasswordText);
     }
 

@@ -66,6 +66,11 @@ public class VendorLoginView extends AppCompatActivity {
         String emailText = ((EditText) findViewById(R.id.vendor_login_activity_email_input_field)).getText().toString();
         String passwordText = ((EditText) findViewById(R.id.vendor_login_activity_password_input_field)).getText().toString();
 
+        View v = getCurrentFocus();
+        if (v != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         presenter.signIn(emailText, passwordText);
 
     }
