@@ -165,8 +165,10 @@ public class MallActivity extends AppCompatActivity {
                 vendorIdList.clear();
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     Vendor dataClass = itemSnapshot.getValue(Vendor.class);
-                    dataList.add(dataClass);
-                    vendorIdList.add(itemSnapshot.getKey());
+                    if (dataClass.getBrandName() != null) {
+                        dataList.add(dataClass);
+                        vendorIdList.add(itemSnapshot.getKey());
+                    }
                 }
                 assert dataList.size() == vendorIdList.size();
                 adapter.notifyDataSetChanged();
