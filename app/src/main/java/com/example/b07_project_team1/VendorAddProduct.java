@@ -75,7 +75,7 @@ public class VendorAddProduct extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
             String product = productNameField.getText().toString();
-            double price = Double.parseDouble(priceField.getText().toString());
+            double price = Double.parseDouble(priceField.getText().toString().isEmpty() ? "-1" : priceField.getText().toString());
             String description = descriptionField.getText().toString();
 
             boolean fieldsCompleted = inputFieldsCompleted(product, price, description, uri);
