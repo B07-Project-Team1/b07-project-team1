@@ -7,10 +7,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,6 +69,11 @@ public class VendorAddProduct extends AppCompatActivity {
     private final View.OnClickListener onClickAddButton = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            View v = getCurrentFocus();
+            if (v != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
             String product = productNameField.getText().toString();
             double price = Double.parseDouble(priceField.getText().toString());
             String description = descriptionField.getText().toString();
@@ -156,7 +163,7 @@ public class VendorAddProduct extends AppCompatActivity {
 
                 newProductReference.setValue(newProductInfo);
                 addProductToVendor(productId, uid);
-                finish();
+                finishActivity();
             }
         });
     }
@@ -164,6 +171,15 @@ public class VendorAddProduct extends AppCompatActivity {
     private void addProductToVendor(String newProductId, String vendorUid) {
         ref.child("vendors").child(vendorUid).child("products")
                 .child(newProductId).setValue(true);
+    }
+
+    private void finishActivity() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        finish();
     }
 
 }
