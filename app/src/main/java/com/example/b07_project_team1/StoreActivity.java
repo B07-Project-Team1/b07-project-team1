@@ -19,7 +19,6 @@ import android.text.TextWatcher;
 
 import com.bumptech.glide.Glide;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
