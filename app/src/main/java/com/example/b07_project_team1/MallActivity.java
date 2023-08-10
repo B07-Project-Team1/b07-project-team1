@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +65,10 @@ public class MallActivity extends AppCompatActivity {
         cartButton = findViewById(R.id.ribbon_cart);
         userMenuButton = findViewById(R.id.ribbon_user);
         ordersButton = findViewById(R.id.ribbon_orders);
+
+        if (isVendor) {
+            cartButton.setImageResource(R.drawable.selection_plus);
+        }
 
         userAuth = FirebaseAuth.getInstance();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MallActivity.this, 2);

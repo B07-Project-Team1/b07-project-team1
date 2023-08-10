@@ -104,8 +104,6 @@ public class VendorSetup extends AppCompatActivity {
         createAccountButton = (Button) findViewById(R.id.button_vendor_setup_activity);
         createAccountButton.setOnTouchListener(onTouchLogin);
 
-        errorTextView = (TextView) findViewById(R.id.vendor_setup_activity_invalid_error);
-
         uploadImage = findViewById(R.id.brand_logo_upload_container);
 
         db = FirebaseDatabase.getInstance("https://b07-projectdb-team1-default-rtdb.firebaseio.com/");

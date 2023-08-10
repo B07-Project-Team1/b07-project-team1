@@ -24,13 +24,13 @@
                 android:id="@+id/preview_product_title_holder"
                 android:layout_width="293dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/mundial_demibold"
+                android:textAlignment="center"
                 android:textColor="#1A1A1A"
                 android:textSize="24sp"
                 android:typeface="normal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,14 +38,12 @@
                 android:id="@+id/preview_product_price_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
 
                 android:fontFamily="@font/mundial_demibold"
                 android:textColor="#1A1A1A"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/preview_product_frame"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/preview_product_title_holder" />
 
@@ -56,7 +54,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="65dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="40dp"
                 android:src="@drawable/preview_image_holder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +63,7 @@
 
             <ImageView
                 android:id="@+id/preview_product_image_holder"
+                app:shapeAppearanceOverlay="@style/roundimageview"
                 android:layout_width="289dp"
                 android:layout_height="272dp"
                 android:src="@drawable/ic_launcher_background"
@@ -77,11 +76,14 @@
                 android:id="@+id/preview_close"
                 android:layout_width="41dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="40dp"
                 android:backgroundTint="#00FFFFFF"
                 android:src="@drawable/product_close_button"
+                app:layout_constraintBottom_toTopOf="@+id/preview_product_frame"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.93"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.19999999" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

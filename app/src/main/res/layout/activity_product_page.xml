@@ -34,14 +34,12 @@
         android:id="@+id/vendor_add_product_back_button"
         android:layout_width="28dp"
         android:layout_height="26dp"
-        android:layout_marginTop="44dp"
         android:background="@drawable/arrow_left_back"
         app:layout_constraintBottom_toTopOf="@+id/product_page_image_bg"
         app:layout_constraintEnd_toStartOf="@+id/product_page_store_logo_inner"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/product_page_image"
@@ -54,7 +52,8 @@
         app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="@+id/product_page_image_bg"
         app:layout_constraintTop_toTopOf="@+id/product_page_image_bg"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintVertical_bias="0.476"
+        app:shapeAppearanceOverlay="@style/roundimageview" />
 
     <TextView
         android:id="@+id/product_page_product_name"
@@ -133,6 +132,7 @@
         android:layout_width="35dp"
         android:layout_height="28dp"
         android:fontFamily="@font/mundial_light"
+        android:includeFontPadding="false"
         android:textAlignment="center"
         android:textColor="#ABABAB"
         android:textSize="24sp"
@@ -141,7 +141,7 @@
         app:layout_constraintEnd_toStartOf="@+id/product_page_plus_button"
         app:layout_constraintStart_toEndOf="@+id/product_page_minus_button"
         app:layout_constraintTop_toBottomOf="@+id/product_page_product_info"
-        app:layout_constraintVertical_bias="0.22000003" />
+        app:layout_constraintVertical_bias="0.35000002" />
 
     <ImageView
         android:id="@+id/bot_rect"
